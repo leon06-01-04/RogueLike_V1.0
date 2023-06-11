@@ -22,9 +22,6 @@ public class Charakter extends Entity implements ActionListener {
 
     }
 
-    
-    // int []inventory = new int [8];
-
     // Fighting
     public boolean CooldownSword;
     public boolean swordHitConnects;
@@ -32,12 +29,14 @@ public class Charakter extends Entity implements ActionListener {
     public boolean CooldownShield;
     public boolean damageProtection;
 
-    public boolean CooldownShot;
-    public boolean shotConnects;
 
     public Timer cooldownTimerSword = new Timer(1000, this);
     public Timer cooldownTimerShield = new Timer(5000, this);
     public Timer cooldownTimerShot = new Timer(8000, this);
+
+    private int swordAoE_X[] [] = new int[3] [3];
+    private int swordAoE_Y[] [] = new int[3] [3];
+
 
     public void actionPerformed(ActionEvent e) {
         // Überprüfung der Events
@@ -53,8 +52,25 @@ public class Charakter extends Entity implements ActionListener {
     // Sword
     public void CastSwordHit() {
 
+        /*Hier werden die X und Y Koordinaten der Zellen um den Spieler deklariert. 
+        swordAoE_X ist der X Wert der Zelle
+        swordAoE_Y ist der Y Wert der Zelle
+
+        Bei CastSwordHit soll in einem Radius von 1 die Umgebung via AoE attakiert werden */
+        //Eventuell erweiterung auf Radius 2 
+
+        //leftside                                                         //in the middle                             //rightside
+        swordAoE_X [0] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [1] [0] = SpielPanel.playerX;    swordAoE_X [2] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;
+        swordAoE_X [0] [1] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [1] [1] = SpielPanel.playerX;    swordAoE_X [2] [1] = SpielPanel.playerX + SpielPanel.CELL_SIZE;
+        swordAoE_X [0] [2] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [1] [2] = SpielPanel.playerX;    swordAoE_X [2] [2] = SpielPanel.playerX + SpielPanel.CELL_SIZE;
+        //Above                                                            //in the middle                             //Down
+        swordAoE_Y [0] [0] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [1] [0] = SpielPanel.playerY;    swordAoE_Y [2] [0] = SpielPanel.playerY + SpielPanel.CELL_SIZE;
+        swordAoE_Y [0] [1] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [1] [1] = SpielPanel.playerY;    swordAoE_Y [2] [1] = SpielPanel.playerY + SpielPanel.CELL_SIZE;
+        swordAoE_Y [0] [2] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [1] [2] = SpielPanel.playerY;    swordAoE_Y [2] [2] = SpielPanel.playerY + SpielPanel.CELL_SIZE;
+            
         if (!CooldownSword) {
 
+            
             System.out.println("SwordHit");
             startCooldownSword();
         }
@@ -112,34 +128,7 @@ public class Charakter extends Entity implements ActionListener {
         System.out.println("Shield: Cooldown beendet");
     }
 
-    // Shot
-    public void CastShot() {
-        if (!CooldownShot) {
 
-            System.out.println("Shot");
-            startCooldownShot();
-            if (shotConnects == true) {
-                System.out.println("does dmg");
-            } else {
-                System.out.println("nothing happens");
-            }
-        } else {
-
-            System.out.println("No Shot");
-        }
-    }
-
-    private void startCooldownShot() {
-        CooldownShot = true;
-        cooldownTimerShot.start();
-        System.out.println("Shot: Cooldown gestartet");
-    }
-
-    private void stopCooldownShot() {
-        CooldownShot = false;
-        cooldownTimerShot.stop();
-        System.out.println("Shot: Cooldown beendet");
-    }
 
     // Interaction
     public String startInteraction() {

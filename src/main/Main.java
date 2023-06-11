@@ -6,6 +6,8 @@ public class Main {
         StartBildschirm startScreen = new StartBildschirm(); //startbildschirm wird erstellt
         System.out.println("Herzlich Willkommen");
         
+        SpielPanel spielpanel = new SpielPanel();
+        spielpanel.playMusic(0);
         
 
     }
