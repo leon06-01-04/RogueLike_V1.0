@@ -5,10 +5,6 @@ import block.Blockmanager;
 
 import javax.swing.*;
 
-
-
-
-
 import java.util.Random;
 
 public class SpielPanel extends JPanel implements Runnable {
@@ -16,6 +12,8 @@ public class SpielPanel extends JPanel implements Runnable {
     public static final int FIELD_SIZE = 32; // größe des Kompletten Spielfeldes
     public static final int CELL_SIZE = 25; // größe der Felder
     private static final int DELAY = 99;
+    public Blockmanager blockManager = new Blockmanager(this);
+
 
     static final int SCREEN_WIDTH = 2400;
     static final int SCREEN_HEIGHT = 1050;
@@ -27,7 +25,6 @@ public class SpielPanel extends JPanel implements Runnable {
     public int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
     private int playerSize = UNIT_SIZE; // Größe des Spielers
 
-    
     Random random;
     Charakter player = new Charakter(10, 10, 0, 5);
     Thread gameThread; // sorgt fürs starten bzw stoppen
@@ -48,9 +45,9 @@ public class SpielPanel extends JPanel implements Runnable {
         sideText = new JTextArea();
         displayFPS = new JTextArea();
 
-        sideText.setBounds(860, 100, 300, 100);
+        sideText.setBounds(860, 100, 350, 100);
         sideText.setFont(fontTarea);
-        sideText.setText("Willkommen in ...\n Drücken sie WASD um sich zu Bewegen");
+        sideText.setText("Willkommen in ...\n Drücken sie WASD um \n sich zu Bewegen");
         sideText.setForeground(Color.ORANGE);
         sideText.setBackground(Color.BLACK);
         sideText.setEditable(false);
@@ -72,7 +69,6 @@ public class SpielPanel extends JPanel implements Runnable {
         this.add(displayFPS);
     }
     
-
     @Override
     public void run() {
         // thread startet automatisch diese Methode

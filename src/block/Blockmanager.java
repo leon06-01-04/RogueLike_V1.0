@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import main.ImageHandler;
@@ -17,21 +16,22 @@ import main.SpielPanel;
 public class Blockmanager {
 
     private SpielPanel panel;
-    private Map<String, Block> blockMap = new HashMap<>(); // Map each array index to a string for better readability
-    Block[] block;
+    private Map<Integer, Block> blockMap = new HashMap<>(); // Use Integer as the key type
+    Block[] blocks;
     ImageIcon image;
 
     private int col = 0;
     private int row = 0;
     private int x = 0;
     private int y = 0;
-    String[][] mapBlockNum = new String[panel.FIELD_SIZE][panel.FIELD_SIZE];
+    int[][] mapBlockNum;
 
     public Blockmanager(SpielPanel panel) {
 
+        mapBlockNum = new int[panel.FIELD_SIZE][panel.FIELD_SIZE];
         this.panel = panel;
         getBlockImage();
-        loadMap(pathToMap);
+        loadMap("C:\\Users\\leons\\OneDrive\\Dokumente\\GitHub\\RogueLike_V1.0\\resources\\map");
     }
 
     private void getBlockImage() {
@@ -40,28 +40,25 @@ public class Blockmanager {
 
         try {
             Block block = new Block();
-            block.image = ImageHandler.readImage("block/grass.png");
-            blockMap.put("grass", block);
+            block.image = ImageHandler.readImage("resources\\grass.png");
+            blockMap.put(0, block);
 
             block = new Block();
-            block.image = ImageHandler.readImage("block/water.png");
-            blockMap.put("water", block);
+            block.image = ImageHandler.readImage("resources\\water.png");
+            blockMap.put(1, block);
 
             block = new Block();
-            block.image = ImageHandler.readImage("block/wall_stone.png");
-            blockMap.put("stone_wall", block);
+            block.image = ImageHandler.readImage("resources\\wall_stone.png");
+            blockMap.put(2, block);
 
             block = new Block();
-            block.image = ImageHandler.readImage("block/dirt.png");
-            blockMap.put("dirt", block);
+            block.image = ImageHandler.readImage("resources\\dirt.png");
+            blockMap.put(3, block);
 
             block = new Block();
-            block.image = ImageHandler.readImage("block/sand.png");
-            blockMap.put("sand", block);
+            block.image = ImageHandler.readImage("resources\\sand.png");
+            blockMap.put(4, block);
 
-            block = new Block();
-            block.image = ImageHandler.readImage("block/tree_grass.png");
-            blockMap.put("tree_grass", block);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,14 +66,14 @@ public class Blockmanager {
         }
     }
 
-    public BufferedImage getTile(String tileName) {
+    public BufferedImage getTile(int tileName) {
         return blockMap.get(tileName).image;
     }
 
     public void loadMap(String pathToMap) {
         try {
             // Read text file
-            InputStream is = getClass().getResourceAsStream("maps");
+            InputStream is = getClass().getResourceAsStream(pathToMap);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             while (col < panel.FIELD_SIZE && row < panel.FIELD_SIZE) {
@@ -84,7 +81,7 @@ public class Blockmanager {
 
                 while (col < panel.FIELD_SIZE) {
                     String[] tileNames = line.split(",");
-                    String tileName = tileNames[col];
+                    int tileName = Integer.parseInt(tileNames[col]);
                     mapBlockNum[col][row] = tileName;
 
                     col++;
