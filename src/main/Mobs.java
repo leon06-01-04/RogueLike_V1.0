@@ -1,9 +1,6 @@
 package main;
 import java.awt.Rectangle;
-import java.awt.event.*;
-import javax.swing.*;
 
-import java.awt.*;
 
 public class Mobs extends Entity {
 

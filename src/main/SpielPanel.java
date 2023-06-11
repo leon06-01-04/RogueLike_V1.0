@@ -1,8 +1,5 @@
 package main;
 import java.awt.*;
-import java.io.IOException;
-import block.Blockmanager;
-
 import javax.swing.*;
 
 
@@ -23,9 +20,11 @@ public class SpielPanel extends JPanel implements Runnable {
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / UNIT_SIZE;
     static final int FPS = 60; // verzögerung in Milimeter
 
-    public int playerX = CELL_SIZE * 2; // X-Koordinate des Spielers
-    public int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
+    public static int playerX = CELL_SIZE * 2; // X-Koordinate des Spielers
+    public static int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
     private int playerSize = UNIT_SIZE; // Größe des Spielers
+
+    
 
     
     Random random;
@@ -38,7 +37,7 @@ public class SpielPanel extends JPanel implements Runnable {
 
     KeyHandler keyHandler = new KeyHandler();
     MouseHandler mouseHandler = new MouseHandler();
-    //Sound sound = new Sound();
+    Sound sound = new Sound();
   
 
     SpielPanel() {
@@ -144,6 +143,7 @@ public class SpielPanel extends JPanel implements Runnable {
             }
         }
         if (mouseHandler.leftMousePressed == true) {
+            
             player.CastSwordHit();
 
         }
@@ -200,14 +200,14 @@ public class SpielPanel extends JPanel implements Runnable {
         }
     }
     
-    /*public static void playMusic(int i) {
+    public void playMusic(int i) {
         sound.setFile(i);
         sound.playSound();
         sound.loopSound();
     }
     public void stopMusic() {
         sound.stopSound();
-    }*/
+    }
 
     
 

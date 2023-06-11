@@ -1,10 +1,7 @@
 package main;
 import java.awt.Graphics;
 import java.util.LinkedList;
-import java.awt.event.*;
-import javax.swing.*;
 
-import java.awt.*;
 
 public class HandlerCreature {
 
