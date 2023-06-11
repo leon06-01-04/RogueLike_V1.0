@@ -29,8 +29,6 @@ public class Charakter extends Entity implements ActionListener {
     public boolean CooldownShield;
     public boolean damageProtection;
 
-    public boolean CooldownShot;
-    public boolean shotConnects;
 
     public Timer cooldownTimerSword = new Timer(1000, this);
     public Timer cooldownTimerShield = new Timer(5000, this);
@@ -59,7 +57,7 @@ public class Charakter extends Entity implements ActionListener {
         swordAoE_Y ist der Y Wert der Zelle
 
         Bei CastSwordHit soll in einem Radius von 1 die Umgebung via AoE attakiert werden */
-
+        //Eventuell erweiterung auf Radius 2 
 
         //leftside                                                         //in the middle                             //rightside
         swordAoE_X [0] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [1] [0] = SpielPanel.playerX;    swordAoE_X [2] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;
@@ -130,34 +128,7 @@ public class Charakter extends Entity implements ActionListener {
         System.out.println("Shield: Cooldown beendet");
     }
 
-    // Shot
-    public void CastShot() {
-        if (!CooldownShot) {
 
-            System.out.println("Shot");
-            startCooldownShot();
-            if (shotConnects == true) {
-                System.out.println("does dmg");
-            } else {
-                System.out.println("nothing happens");
-            }
-        } else {
-
-            System.out.println("No Shot");
-        }
-    }
-
-    private void startCooldownShot() {
-        CooldownShot = true;
-        cooldownTimerShot.start();
-        System.out.println("Shot: Cooldown gestartet");
-    }
-
-    private void stopCooldownShot() {
-        CooldownShot = false;
-        cooldownTimerShot.stop();
-        System.out.println("Shot: Cooldown beendet");
-    }
 
     // Interaction
     public String startInteraction() {
