@@ -13,14 +13,14 @@ public class Sound {
 
     public Sound() {
 
-        soundURL[0] = getClass().getResource("/TanzaufdemVulkan.wav");
-        soundURL[1] = getClass().getResource("/TanzaufdemVulkan.wav"); 
-        soundURL[2] = getClass().getResource("/TanzaufdemVulkan.wav");
-        soundURL[3] = getClass().getResource("/TanzaufdemVulkan.wav");
-        soundURL[4] = getClass().getResource("/TanzaufdemVulkan.wav");
-        soundURL[5] = getClass().getResource("/TanzaufdemVulkan.wav");
-        soundURL[6] = getClass().getResource("/TanzaufdemVulkan.wav");
-        soundURL[7] = getClass().getResource("/TanzaufdemVulkan.wav");
+        soundURL[0] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
+        soundURL[1] = getClass().getResource("resources\\TanzaufdemVulkan.wav"); 
+        soundURL[2] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
+        soundURL[3] = getClass().getResource("/resources\\TanzaufdemVulkan.wav");
+        soundURL[4] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
+        soundURL[5] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
+        soundURL[6] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
+        soundURL[7] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
     }
     
     public void setFile(int i) {
