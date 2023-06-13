@@ -2,6 +2,8 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 
+import block.Blockmanager;
+
 import java.util.Random;
 
 public class SpielPanel extends JPanel implements Runnable {
@@ -9,7 +11,7 @@ public class SpielPanel extends JPanel implements Runnable {
     public static final int FIELD_SIZE = 32; // größe des Kompletten Spielfeldes
     public static final int CELL_SIZE = 25; // größe der Felder
     private static final int DELAY = 99;
-    public Blockmanager blockManager = new Blockmanager(this);
+    public Blockmanager blockmanager = new Blockmanager(this);
 
 
     static final int SCREEN_WIDTH = 2400;
@@ -36,7 +38,7 @@ public class SpielPanel extends JPanel implements Runnable {
   
 
     SpielPanel() {
-
+        super();
         fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20);
         random = new Random();
         sideText = new JTextArea();

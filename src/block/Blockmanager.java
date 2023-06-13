@@ -31,7 +31,7 @@ public class Blockmanager {
         mapBlockNum = new int[panel.FIELD_SIZE][panel.FIELD_SIZE];
         this.panel = panel;
         getBlockImage();
-        loadMap("C:\\Users\\leons\\OneDrive\\Dokumente\\GitHub\\RogueLike_V1.0\\resources\\map");
+        loadMap("2t");
     }
 
     private void getBlockImage() {
