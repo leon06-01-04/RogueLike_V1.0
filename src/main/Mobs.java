@@ -13,6 +13,7 @@ Rectangle bounds;
 public  Mobs(int x, int y, int ID, int enemyType){
 
     super(x, y, ID, enemyType);
+    //super ist zum Aufrufen eines Konstruktor einer anderen Klassen (durch extends)
 
     bounds = new Rectangle((int)x, (int)y, 32, 32);
  // this. ist zum variablen vereinen so das alles in einem gespeichert wird.
@@ -22,6 +23,7 @@ public  Mobs(int x, int y, int ID, int enemyType){
 public void speed(int x,int y){
     this.x +=x;
     this.y +=y;
+    //schnelligkeit der Mobs
 }
 public int getY(){
     return y;
