@@ -25,10 +25,12 @@ public class HandlerCreature {
 
     public void addObject(Entity tempObject) {
         object.add(tempObject);
+        //Addition von Objecten in die LinkedList
     }
 
     public void removeObject(Entity tempObject) {
         object.remove(tempObject);
+        //Subtraktion von Objecten aus der LinkedList
     }
 
 }
