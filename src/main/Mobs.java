@@ -19,6 +19,10 @@ public  Mobs(int x, int y, int ID, int enemyType){
  // rectangle ist zum Hitbox machen 
  // float ist zum positionen eingeben
 }
+public void speed(int x,int y){
+    this.x +=x;
+    this.y +=y;
+}
 public int getY(){
     return y;
 }
