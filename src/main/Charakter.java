@@ -95,6 +95,7 @@ public class Charakter extends Entity implements ActionListener {
         CooldownSword = true;
         cooldownTimerSword.start();
         System.out.println("Sword: Cooldown gestartet");
+        //nach Schwung des Schwertes wird eine Abklingzeit gegeben
     }
 
     private void stopCooldownSword() {
