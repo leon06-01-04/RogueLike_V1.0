@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class HandlerCreature {
 
-    public LinkedList<Entity> object = new LinkedList<Entity>();
+    private BufferedImage[] firstMob = new BufferedImage[1];
 
     public void tick() {
       //updaten des objects
@@ -18,9 +18,7 @@ public class HandlerCreature {
 
     public void render(Graphics g) {
            //das rendern von Grafiken
-        for (Entity tempObject : object) {
-            tempObject.render(g);
-        }
+        g.drawImage(firstMob[0],(int) x, (int) y, null);
     }
 
     public void addObject(Entity tempObject) {
