@@ -37,8 +37,8 @@ public class Charakter extends Entity implements ActionListener {
     public Timer cooldownTimerShot = new Timer(8000, this);
 
         //Arrays für den AoE_Effekt der CastSwordHit Methode
-    private int swordAoE_X[] [] = new int[3] [3];
-    private int swordAoE_Y[] [] = new int[3] [3];
+    private int swordAoE_X[] [] = new int[5] [3];
+    private int swordAoE_Y[] [] = new int[5] [3];
 
         //Überprüfung der Inputs/Events des Kampfes
     public void actionPerformed(ActionEvent e) {
@@ -76,12 +76,18 @@ public class Charakter extends Entity implements ActionListener {
 
             System.out.println("SwordHit");
             startCooldownSword();
+  
+            for (int i = 0; i>5; i++) {
+                for (int j = 0; j>3; j++ ) {
 
-            if (swordAoE_X == SpielPanel.mobX && swordAoE_Y == SpielPanel.mobY) {
-
-                swordHitConnects = true;
-            }
+                
             
+                    if (SpielPanel.mobX == swordAoE_X [i] [j] ==  && SpielPanel.mobY == swordAoE_Y [i] [j] ) {
+
+                        swordHitConnects = true;
+                    }
+                }
+            }
         }
 
         if (swordHitConnects == true) { 
