@@ -9,8 +9,7 @@ public class HandlerCreature {
 
     public void tick() {
       //updaten des objects
-        for (Entity tempObjekt : object) {
-            tempObjekt.tick();
+       
             
         }
 
@@ -21,14 +20,8 @@ public class HandlerCreature {
         g.drawImage(firstMob[0],(int) x, (int) y, null);
     }
 
-    public void addObject(Entity tempObject) {
-        object.add(tempObject);
-        //Addition von Objecten in die LinkedList
-    }
+  
 
-    public void removeObject(Entity tempObject) {
-        object.remove(tempObject);
-        //Subtraktion von Objecten aus der LinkedList
-    }
+    
 
 }
