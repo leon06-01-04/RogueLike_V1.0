@@ -60,25 +60,31 @@ public class Charakter extends Entity implements ActionListener {
         Bei CastSwordHit soll in einem Radius von 1 die Umgebung via AoE attakiert werden */
         //Eventuell erweiterung auf Radius 2 
 
-        //linke Spalte                                                     //mittlere Spalte                           //rechte Spalte
-        swordAoE_X [0] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [1] [0] = SpielPanel.playerX;    swordAoE_X [2] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;
-        swordAoE_X [0] [1] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [1] [1] = SpielPanel.playerX;    swordAoE_X [2] [1] = SpielPanel.playerX + SpielPanel.CELL_SIZE;
-        swordAoE_X [0] [2] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [1] [2] = SpielPanel.playerX;    swordAoE_X [2] [2] = SpielPanel.playerX + SpielPanel.CELL_SIZE;
-        //obere Reihe                                                      //mittlere Reihe                            //untere Reihe
-        swordAoE_Y [0] [0] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [1] [0] = SpielPanel.playerY;    swordAoE_Y [2] [0] = SpielPanel.playerY + SpielPanel.CELL_SIZE;
-        swordAoE_Y [0] [1] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [1] [1] = SpielPanel.playerY;    swordAoE_Y [2] [1] = SpielPanel.playerY + SpielPanel.CELL_SIZE;
-        swordAoE_Y [0] [2] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [1] [2] = SpielPanel.playerY;    swordAoE_Y [2] [2] = SpielPanel.playerY + SpielPanel.CELL_SIZE;
+        //1. linke Spalte                                                   //2. linke Spalte                                                  //mittlere Spalte                           //1. rechte Spalte                                                 //2. rechte Spalte
+        swordAoE_X [0] [0] = SpielPanel.playerX - 2*SpielPanel.CELL_SIZE;   swordAoE_X [1] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [2] [0] = SpielPanel.playerX;    swordAoE_X [3] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    swordAoE_X [4] [0] = SpielPanel.playerX + 2*SpielPanel.CELL_SIZE; 
+        swordAoE_X [0] [1] = SpielPanel.playerX - 2*SpielPanel.CELL_SIZE;   swordAoE_X [1] [1] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [2] [1] = SpielPanel.playerX;    swordAoE_X [3] [1] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    swordAoE_X [4] [1] = SpielPanel.playerX + 2*SpielPanel.CELL_SIZE;
+        swordAoE_X [0] [2] = SpielPanel.playerX - 2*SpielPanel.CELL_SIZE;   swordAoE_X [1] [2] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [2] [2] = SpielPanel.playerX;    swordAoE_X [3] [2] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    swordAoE_X [4] [2] = SpielPanel.playerX + 2*SpielPanel.CELL_SIZE;
+        //1. obere Reihe                                                    //2. obere                                                         //mittlere Reihe                            //1. untere Reihe                                                  //2. untere Reihe
+        swordAoE_Y [0] [0] = SpielPanel.playerY - 2*SpielPanel.CELL_SIZE;   swordAoE_Y [1] [0] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [2] [0] = SpielPanel.playerY;    swordAoE_Y [3] [0] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    swordAoE_Y [4] [0] = SpielPanel.playerY + 2*SpielPanel.CELL_SIZE; 
+        swordAoE_Y [0] [1] = SpielPanel.playerY - 2*SpielPanel.CELL_SIZE;   swordAoE_Y [1] [1] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [2] [1] = SpielPanel.playerY;    swordAoE_Y [3] [1] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    swordAoE_Y [4] [1] = SpielPanel.playerY + 2*SpielPanel.CELL_SIZE;
+        swordAoE_Y [0] [2] = SpielPanel.playerY - 2*SpielPanel.CELL_SIZE;   swordAoE_Y [1] [2] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [2] [2] = SpielPanel.playerY;    swordAoE_Y [3] [2] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    swordAoE_Y [4] [2] = SpielPanel.playerY + 2*SpielPanel.CELL_SIZE;
                                         //mit der Hilfe von Andrei
 
         if (!CooldownSword) {
        
         //Abfrage nach laufendem Cooldown
-            
+
             System.out.println("SwordHit");
             startCooldownSword();
+
+            if (swordAoE_X == SpielPanel.mobX && swordAoE_Y == SpielPanel.mobY) {
+
+                swordHitConnects = true;
+            }
+            
         }
 
-        if (swordHitConnects == true) { // da fehlt ne privat klasse zur abfrage
+        if (swordHitConnects == true) { 
 
             if (swordHitConnects == true) {
 
@@ -110,7 +116,7 @@ public class Charakter extends Entity implements ActionListener {
         System.out.println("Sword: Cooldown beendet");
     }*/
 
-    // Shield
+        // Shield
     public void CastShieldBlock() {
         if (!CooldownShield) {
 

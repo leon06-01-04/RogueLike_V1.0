@@ -41,12 +41,16 @@ public class Sound {
         }
     }
 
+    //Clip
+        //Clip starten
     public void playSound() {
         clip.start();
     }
+        //Clip loopen (Dauerschleife)
     public void loopSound() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }   
+        //Clip stopen
     public void stopSound() {
         clip.stop();
     }

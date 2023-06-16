@@ -38,18 +38,22 @@ public class SpielPanel extends JPanel implements Runnable {
    
     
     static final int SCREEN_WIDTH = 2400;
-    static final int SCREEN_HEIGHT = 1050;
+    static final int SCREEN_HEIGHT = 1050; //final = ein zugewiesener wert und endvariable erhält immer gleichen wert
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / CELL_SIZE;
     static final int FPS = 30; // verzögerung in Milimeter
-    
+    //position spieler
     public static int playerX = CELL_SIZE * 2; // X-Koordinate des Spielers
     public static int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
-    private int playerSize = CELL_SIZE; // Größe des Spielers
+    //position mobs
+    public static int mobsX = CELL_SIZE *2;
+    public static int mobsY = CELL_SIZE *2;
 
-    
-   
+    private int playerSize = CELL_SIZE; // Größe des Spielers
+    private int mobSize = CELL_SIZE; // Größe des Spielers
+
     SpielPanel() {
         super();
+
         fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20);
         random = new Random();
         sideText = new JTextArea();
