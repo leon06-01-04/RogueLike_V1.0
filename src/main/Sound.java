@@ -6,13 +6,19 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+                                        //Kopiert aus dem Tutorial: https://www.youtube.com/watch?v=nUHh_J2Acy8
+
 public class Sound {
     
     Clip clip;
+    //Initialsierung eines Clips
+
     URL soundURL[] = new URL[10];
+    //verlinkung der MUsik/Sounddateien
 
     public Sound() {
 
+        //Arrays zur verwaltung der jeweilig benötigten Soundeffekte
         soundURL[0] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
         soundURL[1] = getClass().getResource("resources\\TanzaufdemVulkan.wav"); 
         soundURL[2] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
@@ -24,10 +30,10 @@ public class Sound {
     }
     
     public void setFile(int i) {
-
+        
         try {
-
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL[i]);
+            //try-Methode, versucht auszuführen
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL[i]); //NOCH KOMMENTAR ERGÄNZEN
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
         } catch(Exception e) {
@@ -35,12 +41,16 @@ public class Sound {
         }
     }
 
+    //Clip
+        //Clip starten
     public void playSound() {
         clip.start();
     }
+        //Clip loopen (Dauerschleife)
     public void loopSound() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }   
+        //Clip stopen
     public void stopSound() {
         clip.stop();
     }

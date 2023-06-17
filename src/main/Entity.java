@@ -1,5 +1,6 @@
 package main;
 import java.awt.*;
+
  
 public class Entity {
 
@@ -7,7 +8,8 @@ int y, x;
 int ID;
 String name;
 int health;
-
+Rectangle bounds;
+ 
 public Entity(int x, int y, int ID, int health) {
 this.y = y;
 this.x = x;
@@ -23,7 +25,9 @@ public void render(Graphics g) {
 
 }
 
-
+public Rectangle getBounds(){
+ return bounds;
+}
 public int getY(){
     return y;
 }
