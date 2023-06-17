@@ -19,60 +19,60 @@ public class SpielPanel extends JPanel implements Runnable {
     JTextArea sideText;
     JTextArea displayFPS;
     JTextArea displayGold;
+    JTextArea displayHealth;
+
     Font fontTarea;
     BufferedImage image;
-    
-    
+
     KeyHandler keyHandler = new KeyHandler();
     MouseHandler mouseHandler = new MouseHandler();
     Sound sound = new Sound();
     
-    int randomNumberY;
-    int randomNumberX;   
+    int randomNumberY; //
+    int randomNumberX; //
     int countGold = 0;
     
     public static final int FIELD_SIZE = 32; // größe des Kompletten Spielfeldes
-    public static final int CELL_SIZE = 25; // größe der Felder
-    private static final int DELAY = 70;
+    public static final int CELL_SIZE = 30; // größe der Felder
+    private static final int DELAY = 70;    //verzögerung um den Spieler zu verlangsamen
     public Blockmanager blockmanager = new Blockmanager(this);
    
     
     static final int SCREEN_WIDTH = 2400;
     static final int SCREEN_HEIGHT = 1050;
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / CELL_SIZE;
-    static final int FPS = 30; // verzögerung in Milimeter
+    static final int FPS = 30; //bilder pro Sekunde
     
     public static int playerX = CELL_SIZE * 2; // X-Koordinate des Spielers
     public static int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
     private int playerSize = CELL_SIZE; // Größe des Spielers
 
-    
-   
     SpielPanel() {
         super();
-        fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20);
-        random = new Random();
-        sideText = new JTextArea();
-        displayFPS = new JTextArea();
-        displayGold = new JTextArea();
+        fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20); //schriftart erstellen
+        random = new Random(); 
+        sideText = new JTextArea(); //TextAusgabe für einem Text
+        displayFPS = new JTextArea(); //Anzeige der Bilder pro Sekunde
+        displayGold = new JTextArea(); //Anzeige wie viel Gold man besitzt
+        displayHealth = new JTextArea();
 
         randomNumberY = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
         randomNumberX = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
         
         
-
+        //versucht die png Datei für den spieler zu finden
          try {
-            image = ImageIO.read(new File("resources\\player.png"));
+            image = ImageIO.read(new File("resources\\player.png")); //Bild des Spielers
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        sideText.setBounds(860, 100, 350, 100);
-        sideText.setFont(fontTarea);
+        sideText.setBounds(960, 100, 350, 100);
+        sideText.setFont(fontTarea); //schrift für die anzeige einfuegen
         sideText.setText("Willkommen in ...\n Drücken sie WASD um \n sich zu Bewegen");
-        sideText.setForeground(Color.WHITE);
+        sideText.setForeground(Color.WHITE); //schriftfarbe weiß
         sideText.setBackground(Color.BLACK);
-        sideText.setEditable(false);
+        sideText.setEditable(false); //text kann nicht verändert werden
 
         displayFPS.setBounds(1760, 100, 100, 100);
         displayFPS.setFont(fontTarea);
@@ -81,7 +81,7 @@ public class SpielPanel extends JPanel implements Runnable {
         displayFPS.setBackground(Color.BLACK);
         displayFPS.setEditable(false);
 
-        displayGold.setBounds(860, 200, 100, 100);
+        displayGold.setBounds(960, 200, 100, 100);
         displayGold.setFont(fontTarea);
         displayGold.setText("Gold:" + countGold);
         displayGold.setForeground(Color.ORANGE);
@@ -91,9 +91,11 @@ public class SpielPanel extends JPanel implements Runnable {
         this.setLayout(null);
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.BLACK);
+        //Keylistener und mouselistener wird hinzugefuegt
         this.addKeyListener(keyHandler); // keylistener/keyHandler wird dem panel hinzugefuegt
         this.addMouseListener(mouseHandler);
         this.setFocusable(true);
+        //wird dem Panel hinzugefuegt
         this.add(sideText);
         this.add(displayFPS);
         this.add(displayGold);
@@ -102,6 +104,9 @@ public class SpielPanel extends JPanel implements Runnable {
     @Override
     public void run() {
         // thread startet automatisch diese Methode
+         if (gameThread == null) {
+        return; // Beenden, wenn gameThread nicht initialisiert wurde
+    }
         double drawinterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime(); // muss long sein
@@ -178,7 +183,10 @@ public class SpielPanel extends JPanel implements Runnable {
             player.CastShieldBlock();
 
         }
-        
+        /*if(playerX) {
+            if(playerY) {
+            }
+        } */
     }
     
     public void paintComponent(Graphics graphics) { // java methode in fenster zu zeichnen
@@ -219,7 +227,7 @@ public class SpielPanel extends JPanel implements Runnable {
                 
 
                 if (playerX > (FIELD_SIZE - 2) * CELL_SIZE) { // wenn der spieler ausßerhalb des spielfelds läuft, wird
-                                                              // er um X/Y zurückgesetzt
+                                                              // er um ein feld zurückgesetzt
                     playerX--;
                 }
                 if (playerX < CELL_SIZE) {
@@ -231,6 +239,18 @@ public class SpielPanel extends JPanel implements Runnable {
                 if (playerY < CELL_SIZE) {
                     playerY++;
                 }
+                /*if(playerX == randomNumberX && playerY == randomNumberY) {
+                    countGold++;
+                    displayGold.setText("Gold:" + countGold);
+                    graphics.setColor(Color.white);
+                    graphics.fillRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+                }
+                    else {
+                    return;
+                    
+                    }*/
                 
             }
         }

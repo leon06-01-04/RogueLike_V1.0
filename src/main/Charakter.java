@@ -2,7 +2,6 @@ package main;
 
 import java.awt.event.*;
 import javax.swing.*;
-
 import java.awt.*;
 
 public class Charakter extends Entity implements ActionListener {
@@ -45,7 +44,7 @@ public class Charakter extends Entity implements ActionListener {
         } else if (e.getSource() == cooldownTimerShield) {
             stopCooldownShield();
         } else if (e.getSource() == cooldownTimerShot) {
-            stopCooldownShot();
+           //stopCooldownShot();
         }
     }
 

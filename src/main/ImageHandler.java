@@ -11,14 +11,14 @@ import javax.imageio.ImageIO;
 
 public class ImageHandler {
 
-    public static BufferedImage readImage(String pathToImg) throws IOException {
+    public static BufferedImage readImage(String pathToImg) throws IOException { 
         BufferedImage image = null;
-        File file = new File(pathToImg);
-        if (file.exists()) {
+        File file = new File(pathToImg); //neue datei wird erstellt
+        if (file.exists()) { //abgefragt ob die datei existiert
             try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
-                image = ImageIO.read(inputStream);
+                image = ImageIO.read(inputStream); 
             }
         }
-        return image;
+        return image; //bild wird zurückgegeben
     }
 }
