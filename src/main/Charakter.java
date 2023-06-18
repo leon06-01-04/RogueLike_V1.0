@@ -45,13 +45,9 @@ public class Charakter extends Entity implements ActionListener {
             stopCooldownSword();
         } else if (e.getSource() == cooldownTimerShield) {
             stopCooldownShield();
-<<<<<<< HEAD
         } else if (e.getSource() == cooldownTimerShot) {
            //stopCooldownShot();
         }
-=======
-        } 
->>>>>>> 1bfabe217c6f859d4ad30e40dd97ed927abc033d
     }
       
         //Fighting Methoden
