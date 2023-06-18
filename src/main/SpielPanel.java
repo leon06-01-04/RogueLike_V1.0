@@ -41,42 +41,27 @@ public class SpielPanel extends JPanel implements Runnable {
     static final int SCREEN_WIDTH = 2400;
     static final int SCREEN_HEIGHT = 1050; //final = ein zugewiesener wert und endvariable erhält immer gleichen wert
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / CELL_SIZE;
-<<<<<<< HEAD
     static final int FPS = 30; //bilder pro Sekunde
     
-=======
-    static final int FPS = 30; // verzögerung in Milimeter
-    //position spieler
->>>>>>> 1bfabe217c6f859d4ad30e40dd97ed927abc033d
     public static int playerX = CELL_SIZE * 2; // X-Koordinate des Spielers
     public static int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
     //position mobs
-    public static int mobsX = CELL_SIZE *2;
-    public static int mobsY = CELL_SIZE *2;
+    public static int mobX = CELL_SIZE *2;
+    public static int mobY = CELL_SIZE *2;
 
     private int playerSize = CELL_SIZE; // Größe des Spielers
     private int mobSize = CELL_SIZE; // Größe des Spielers
 
     SpielPanel() {
         super();
-<<<<<<< HEAD
         fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20); //schriftart erstellen
         random = new Random(); 
         sideText = new JTextArea(); //TextAusgabe für einem Text
         displayFPS = new JTextArea(); //Anzeige der Bilder pro Sekunde
         displayGold = new JTextArea(); //Anzeige wie viel Gold man besitzt
         displayHealth = new JTextArea();
-=======
 
-        fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20);
-        random = new Random();
-        sideText = new JTextArea();
-        displayFPS = new JTextArea();
-        displayGold = new JTextArea();
->>>>>>> 1bfabe217c6f859d4ad30e40dd97ed927abc033d
-
-        randomNumberY = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
-        randomNumberX = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+        
         
         
         //versucht die png Datei für den spieler zu finden
@@ -118,6 +103,7 @@ public class SpielPanel extends JPanel implements Runnable {
         this.add(sideText);
         this.add(displayFPS);
         this.add(displayGold);
+        randomNum();
     }
     
     @Override
@@ -258,18 +244,15 @@ public class SpielPanel extends JPanel implements Runnable {
                 if (playerY < CELL_SIZE) {
                     playerY++;
                 }
-                /*if(playerX == randomNumberX && playerY == randomNumberY) {
-                    countGold++;
-                    displayGold.setText("Gold:" + countGold);
-                    graphics.setColor(Color.white);
-                    graphics.fillRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+                if(playerX == randomNumberX && playerY == randomNumberY) {
+                    countGold(countGold, graphics);
+                    displayGold.setText("Gold:" + this.countGold);
+                    randomNum();   
                 }
-                    else {
-                    return;
+                if(countGold >5) {
+                    nextLvl(graphics);
+                }
                     
-                    }*/
                 
             }
         }
@@ -284,10 +267,27 @@ public class SpielPanel extends JPanel implements Runnable {
         sound.stopSound();
     }
 
+    public int countGold(int countGold, Graphics graphics) {
+        
     
-
-
-
+        this.countGold++;
+        countGold = this.countGold;
+        displayGold.setText("Gold:" + countGold);
+        graphics.setColor(Color.white);
+        graphics.fillRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+        graphics.setColor(Color.BLACK);
+        graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+        graphics.setColor(Color.white);
+    return countGold;
+    }
+    public void randomNum() {
+        randomNumberY = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+        randomNumberX = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+    }
+    public void nextLvl(Graphics graphics) {
+        graphics.setColor(Color.CYAN);
+        graphics.fillRect(CELL_SIZE * FIELD_SIZE,FIELD_SIZE/2, CELL_SIZE,CELL_SIZE);
+    }
     public void startgameThread() {
         gameThread = new Thread(this); // this = diese klasse wird gemeint
         gameThread.start();
