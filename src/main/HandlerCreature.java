@@ -10,19 +10,19 @@ public class HandlerCreature {
 
     public void tick() {
       //updaten des objects
-       
-            
+
+
         }
 
-    }
+
 
     public void render(Graphics g) {
            //das rendern von Grafiken
         g.drawImage(firstMob[0],(int) x, (int) y, null);
     }
 
-  
 
-    
+
+
 
 }
