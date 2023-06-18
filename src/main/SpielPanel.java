@@ -61,7 +61,12 @@ public class SpielPanel extends JPanel implements Runnable {
         displayGold = new JTextArea(); //Anzeige wie viel Gold man besitzt
         displayHealth = new JTextArea();
 
+<<<<<<< HEAD
         
+=======
+        randomNumberY = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+        randomNumberX = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+>>>>>>> 74767f9445747e2710ce703f744b73379bd9cf38
         
         
         //versucht die png Datei für den spieler zu finden
