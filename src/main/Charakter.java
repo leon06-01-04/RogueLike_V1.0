@@ -108,7 +108,7 @@ public class Charakter extends Entity implements ActionListener {
 
     private void startCooldownSword() {
 
-        //Klasse zum Start des Cooldowns
+        //Klasse zum Start des Cooldowns. Dabei wird Cooldown auf true gesetzt und der Timer des Cooldowns gestartet
         CooldownSword = true;
         cooldownTimerSword.start();
         System.out.println("Sword: Cooldown gestartet");
@@ -116,6 +116,8 @@ public class Charakter extends Entity implements ActionListener {
     }
 
     private void stopCooldownSword() {
+
+        //Klasse zum Stoppen des Cooldowns. 
         CooldownSword = false;
         cooldownTimerSword.stop();
         System.out.println("Sword: Cooldown beendet");
