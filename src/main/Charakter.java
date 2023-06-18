@@ -45,13 +45,7 @@ public class Charakter extends Entity implements ActionListener {
             stopCooldownSword();
         } else if (e.getSource() == cooldownTimerShield) {
             stopCooldownShield();
-<<<<<<< HEAD
-        } else if (e.getSource() == cooldownTimerShot) {
-           //stopCooldownShot();
-        }
-=======
         } 
->>>>>>> 1bfabe217c6f859d4ad30e40dd97ed927abc033d
     }
       
         //Fighting Methoden
@@ -87,7 +81,7 @@ public class Charakter extends Entity implements ActionListener {
 
                 
             
-                    if (SpielPanel.mobX == swordAoE_X [i] [j] ==  && SpielPanel.mobY == swordAoE_Y [i] [j] ) {
+                    if (SpielPanel.mobX == swordAoE_X [i] [j] && SpielPanel.mobY == swordAoE_Y [i] [j] ) {
 
                         swordHitConnects = true;
                     }
@@ -121,11 +115,11 @@ public class Charakter extends Entity implements ActionListener {
         
     }
 
-    /*private void stopCooldownSword() {
+    private void stopCooldownSword() {
         CooldownSword = false;
         cooldownTimerSword.stop();
         System.out.println("Sword: Cooldown beendet");
-    }*/
+    }
 
         // Shield
     public void CastShieldBlock() {
