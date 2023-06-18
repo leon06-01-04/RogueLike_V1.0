@@ -41,39 +41,25 @@ public class SpielPanel extends JPanel implements Runnable {
     static final int SCREEN_WIDTH = 2400;
     static final int SCREEN_HEIGHT = 1050; //final = ein zugewiesener wert und endvariable erhält immer gleichen wert
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / CELL_SIZE;
-<<<<<<< HEAD
     static final int FPS = 30; //bilder pro Sekunde
     
-=======
-    static final int FPS = 30; // verzögerung in Milimeter
-    //position spieler
->>>>>>> 1bfabe217c6f859d4ad30e40dd97ed927abc033d
     public static int playerX = CELL_SIZE * 2; // X-Koordinate des Spielers
     public static int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
     //position mobs
-    public static int mobsX = CELL_SIZE *2;
-    public static int mobsY = CELL_SIZE *2;
+    public static int mobX = CELL_SIZE *2;
+    public static int mobY = CELL_SIZE *2;
 
     private int playerSize = CELL_SIZE; // Größe des Spielers
     private int mobSize = CELL_SIZE; // Größe des Spielers
 
     SpielPanel() {
         super();
-<<<<<<< HEAD
         fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20); //schriftart erstellen
         random = new Random(); 
         sideText = new JTextArea(); //TextAusgabe für einem Text
         displayFPS = new JTextArea(); //Anzeige der Bilder pro Sekunde
         displayGold = new JTextArea(); //Anzeige wie viel Gold man besitzt
         displayHealth = new JTextArea();
-=======
-
-        fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20);
-        random = new Random();
-        sideText = new JTextArea();
-        displayFPS = new JTextArea();
-        displayGold = new JTextArea();
->>>>>>> 1bfabe217c6f859d4ad30e40dd97ed927abc033d
 
         randomNumberY = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
         randomNumberX = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;

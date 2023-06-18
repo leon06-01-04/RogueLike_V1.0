@@ -11,9 +11,11 @@ Rectangle bounds;
 
 //variablen für die Gegner
 public  Mobs(int x, int y, int ID, int enemyType){
-  height = 25;
-  width = 25   ( SpielPanel Frame Size);
     super(x, y, ID, enemyType);
+    int height = 25;
+    int width = 25;   
+    (SpielPanel Frame Size);
+    
     //super ist zum Aufrufen eines Konstruktor einer anderen Klassen (durch extends)
 
     bounds = new Rectangle((int)x, (int)y, 25, 25);
@@ -33,7 +35,7 @@ public int getX(){
     return x;
 }
 public Rectangle getBounds(){
-    return new Rectangle((int) x, (int) y, width, height;
+    return new Rectangle((int) x, (int) y, width, height);
 }
 public int getHealth(){
     return health;

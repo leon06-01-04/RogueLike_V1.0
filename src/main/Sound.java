@@ -6,7 +6,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-                                        //Kopiert aus dem Tutorial: https://www.youtube.com/watch?v=nUHh_J2Acy8
+                                        //Ganze Klasse entnommen aus dem Tutorial: https://www.youtube.com/watch?v=nUHh_J2Acy8
 
 public class Sound {
     
