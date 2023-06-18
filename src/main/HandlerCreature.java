@@ -14,7 +14,7 @@ public class HandlerCreature {
             
         }
 
-    }
+    
 
     public void render(Graphics g) {
            //das rendern von Grafiken
@@ -24,5 +24,5 @@ public class HandlerCreature {
   
 
     
-
+  
 }
