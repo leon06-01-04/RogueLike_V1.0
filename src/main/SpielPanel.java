@@ -105,6 +105,18 @@ public class SpielPanel extends JPanel implements Runnable {
         this.add(displayGold);
         randomNum();
     }
+    private SpriteSheet ss;
+    private BufferedImage sprite_sheet;
+    public void init(){
+        // Initialisierung 
+        handlerCreature = new HandlerCreature();
+
+        BufferedImageLoader loader = new BufferedImageLoader();
+        sprite_sheet = loader.loadImage("/");
+        //Sprite Sheet fehlt deswegen nichts hinter /
+        ss = new SpriteSheet(sprite_sheet);
+        //damit kann man jeden part von dem Spritesheet benutzen kann
+    }
     
     @Override
     public void run() {
@@ -118,6 +130,7 @@ public class SpielPanel extends JPanel implements Runnable {
         long currentTime;
         long timer = 0;
         long drawCount = 0;
+        init();
         while (gameThread != null) {
 
             currentTime = System.nanoTime();
@@ -143,7 +156,7 @@ public class SpielPanel extends JPanel implements Runnable {
         }
 
     }
-
+    
     public void update() {
 
         if (keyHandler.upPressed == true) {
