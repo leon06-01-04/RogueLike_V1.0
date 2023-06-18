@@ -56,8 +56,8 @@ public class Charakter extends Entity implements ActionListener {
         swordAoE_X ist der X Wert der Zelle
         swordAoE_Y ist der Y Wert der Zelle
 
-        Bei CastSwordHit soll in einem Radius von 1 die Umgebung via AoE attakiert werden */
-        //Eventuell erweiterung auf Radius 2 
+        Bei CastSwordHit soll in einem Radius von 2 die Umgebung via AoE attakiert werden */
+        
 
         //1. linke Spalte                                                   //2. linke Spalte                                                  //mittlere Spalte                           //1. rechte Spalte                                                 //2. rechte Spalte
         swordAoE_X [0] [0] = SpielPanel.playerX - 2*SpielPanel.CELL_SIZE;   swordAoE_X [1] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [2] [0] = SpielPanel.playerX;    swordAoE_X [3] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    swordAoE_X [4] [0] = SpielPanel.playerX + 2*SpielPanel.CELL_SIZE; 
