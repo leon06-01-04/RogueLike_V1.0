@@ -14,7 +14,10 @@ import java.util.Random;
 public class SpielPanel extends JPanel implements Runnable {
 
     Random random;
+
     Charakter player = new Charakter(10, 10, 0, 5);
+    
+
     Thread gameThread; // sorgt fürs starten bzw stoppen
     JTextArea sideText;
     JTextArea displayFPS;
@@ -137,8 +140,6 @@ public class SpielPanel extends JPanel implements Runnable {
                 drawCount = 0;
                 timer = 0;
             }
-            // System.out.println("deine mudda is running");
-
             // information ob das spiel noch läuft
         }
 
