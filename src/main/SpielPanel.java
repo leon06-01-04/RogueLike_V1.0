@@ -14,7 +14,10 @@ import java.util.Random;
 public class SpielPanel extends JPanel implements Runnable {
 
     Random random;
+
     Charakter player = new Charakter(10, 10, 0, 5);
+    
+
     Thread gameThread; // sorgt fürs starten bzw stoppen
     JTextArea sideText;
     JTextArea displayFPS;
@@ -61,8 +64,7 @@ public class SpielPanel extends JPanel implements Runnable {
         displayGold = new JTextArea(); //Anzeige wie viel Gold man besitzt
         displayHealth = new JTextArea();
 
-        randomNumberY = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
-        randomNumberX = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+        
         
         
         //versucht die png Datei für den spieler zu finden
@@ -104,6 +106,19 @@ public class SpielPanel extends JPanel implements Runnable {
         this.add(sideText);
         this.add(displayFPS);
         this.add(displayGold);
+        randomNum();
+    }
+    private SpriteSheet ss;
+    private BufferedImage sprite_sheet;
+    public void init(){
+        // Initialisierung 
+        handlerCreature = new HandlerCreature();
+
+        BufferedImageLoader loader = new BufferedImageLoader();
+        sprite_sheet = loader.loadImage("/");
+        //Sprite Sheet fehlt deswegen nichts hinter /
+        ss = new SpriteSheet(sprite_sheet);
+        //damit kann man jeden part von dem Spritesheet benutzen kann
     }
     
     @Override
@@ -118,6 +133,7 @@ public class SpielPanel extends JPanel implements Runnable {
         long currentTime;
         long timer = 0;
         long drawCount = 0;
+        init();
         while (gameThread != null) {
 
             currentTime = System.nanoTime();
@@ -137,13 +153,11 @@ public class SpielPanel extends JPanel implements Runnable {
                 drawCount = 0;
                 timer = 0;
             }
-            // System.out.println("deine mudda is running");
-
             // information ob das spiel noch läuft
         }
 
     }
-
+    
     public void update() {
 
         if (keyHandler.upPressed == true) {
@@ -244,18 +258,15 @@ public class SpielPanel extends JPanel implements Runnable {
                 if (playerY < CELL_SIZE) {
                     playerY++;
                 }
-                /*if(playerX == randomNumberX && playerY == randomNumberY) {
-                    countGold++;
-                    displayGold.setText("Gold:" + countGold);
-                    graphics.setColor(Color.white);
-                    graphics.fillRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+                if(playerX == randomNumberX && playerY == randomNumberY) {
+                    countGold(countGold, graphics);
+                    displayGold.setText("Gold:" + this.countGold);
+                    randomNum();   
                 }
-                    else {
-                    return;
+                if(countGold >5) {
+                    nextLvl(graphics);
+                }
                     
-                    }*/
                 
             }
         }
@@ -270,10 +281,27 @@ public class SpielPanel extends JPanel implements Runnable {
         sound.stopSound();
     }
 
+    public int countGold(int countGold, Graphics graphics) {
+        
     
-
-
-
+        this.countGold++;
+        countGold = this.countGold;
+        displayGold.setText("Gold:" + countGold);
+        graphics.setColor(Color.white);
+        graphics.fillRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+        graphics.setColor(Color.BLACK);
+        graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
+        graphics.setColor(Color.white);
+    return countGold;
+    }
+    public void randomNum() {
+        randomNumberY = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+        randomNumberX = random.nextInt(FIELD_SIZE - 2) * CELL_SIZE + CELL_SIZE;
+    }
+    public void nextLvl(Graphics graphics) {
+        graphics.setColor(Color.CYAN);
+        graphics.fillRect(CELL_SIZE * FIELD_SIZE,FIELD_SIZE/2, CELL_SIZE,CELL_SIZE);
+    }
     public void startgameThread() {
         gameThread = new Thread(this); // this = diese klasse wird gemeint
         gameThread.start();

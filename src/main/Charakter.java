@@ -39,6 +39,9 @@ public class Charakter extends Entity implements ActionListener {
     private int swordAoE_X[] [] = new int[5] [3];
     private int swordAoE_Y[] [] = new int[5] [3];
 
+    private int shieldAoE_X[] [] = new int [3] [3];
+    private int shieldAoE_Y[] [] = new int [3] [3];
+
         //Überprüfung der Inputs/Events des Kampfes
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cooldownTimerSword) {
@@ -69,7 +72,7 @@ public class Charakter extends Entity implements ActionListener {
         swordAoE_Y [0] [2] = SpielPanel.playerY - 2*SpielPanel.CELL_SIZE;   swordAoE_Y [1] [2] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [2] [2] = SpielPanel.playerY;    swordAoE_Y [3] [2] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    swordAoE_Y [4] [2] = SpielPanel.playerY + 2*SpielPanel.CELL_SIZE;
                                         //mit der Hilfe von Andrei
 
-        if (!CooldownSword) {
+        if (!CooldownSword) { //soll auch nicht möglich sein wenn Shieldblock aktiv ist 
        
         //Abfrage nach laufendem Cooldown
 
@@ -84,31 +87,26 @@ public class Charakter extends Entity implements ActionListener {
                     if (SpielPanel.mobX == swordAoE_X [i] [j] && SpielPanel.mobY == swordAoE_Y [i] [j] ) {
 
                         swordHitConnects = true;
+
+                        if (swordHitConnects == true) {
+
+                            // Hier muss dann der Mob mit den jeweiligen X und Y Koordinaten schaden bekommen
+                            System.out.println("does dmg");
+                        } else {
+                             System.out.println("nothing happens");
+                        }
                     }
                 }
             }
-        }
-
-        if (swordHitConnects == true) { 
-
-            if (swordHitConnects == true) {
-
-                System.out.println("does dmg");
-            } else {
-                System.out.println("nothing happens");
-            }
-
         } else {
-
-            System.out.println("No SwordHit");
+            System.out.println("No Swordhit");    
         }
-
     }
         //Unvollständig
 
     private void startCooldownSword() {
 
-        //Klasse zum Start des Cooldowns
+        //Klasse zum Start des Cooldowns. Dabei wird Cooldown auf true gesetzt und der Timer des Cooldowns gestartet
         CooldownSword = true;
         cooldownTimerSword.start();
         System.out.println("Sword: Cooldown gestartet");
@@ -116,6 +114,8 @@ public class Charakter extends Entity implements ActionListener {
     }
 
     private void stopCooldownSword() {
+
+        //Klasse zum Stoppen des Cooldowns. 
         CooldownSword = false;
         cooldownTimerSword.stop();
         System.out.println("Sword: Cooldown beendet");
@@ -123,16 +123,34 @@ public class Charakter extends Entity implements ActionListener {
 
         // Shield
     public void CastShieldBlock() {
+
+            /* Selbe Prinzip wie bei swordAoE_X und swordAoE_Y
+               Hier wird im Radius von 1 ein Shield erstellt das den Spieler beim durchlaufen von Mobs vor Schaden schützt,
+               gleichzeitig aber verhindert Schaden selbst zu machen
+            */
+
+        //2. linke Spalte                                                   //mittlere Spalte                            //1. rechte Spalte                                                 
+        shieldAoE_X [1] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    shieldAoE_X [2] [0] = SpielPanel.playerX;    shieldAoE_X [3] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    
+        shieldAoE_X [1] [1] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    shieldAoE_X [2] [1] = SpielPanel.playerX;    shieldAoE_X [3] [1] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    
+        shieldAoE_X [1] [2] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    shieldAoE_X [2] [2] = SpielPanel.playerX;    shieldAoE_X [3] [2] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    
+        //2. obere                                                          //mittlere Reihe                             //1. untere Reihe                                                  
+        shieldAoE_Y [1] [0] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    shieldAoE_Y [2] [0] = SpielPanel.playerY;    shieldAoE_Y [3] [0] = SpielPanel.playerY + SpielPanel.CELL_SIZE;     
+        shieldAoE_Y [1] [1] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    shieldAoE_Y [2] [1] = SpielPanel.playerY;    shieldAoE_Y [3] [1] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    
+        shieldAoE_Y [1] [2] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    shieldAoE_Y [2] [2] = SpielPanel.playerY;    shieldAoE_Y [3] [2] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    
+                                        //mit der Hilfe von Andrei
+
         if (!CooldownShield) {
-
-            System.out.println("Shieldblock");
-
+            System.out.println("Shieldblock active");
             startCooldownShield();
+                //eventuell Abbrechbarkeit durch eine Differenz Rechnung des Cooldowns
+            while (CooldownShield == false) {
+                System.out.println("cant take dmg");
+            }
         } else {
-
             System.out.println("No Shieldblock");
         }
     }
+
 
     private void startCooldownShield() {
         CooldownShield = true;
