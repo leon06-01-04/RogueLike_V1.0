@@ -1,8 +1,18 @@
 {
+    "java.configuration.runtimes": [
+       {
+          "name": "JavaSE-11",
+          "path": "C:\\Program Files\\Java\\jdk-11.0.12\\bin\\java.exe"
+       }
+    ],
     "java.project.sourcePaths": ["src", "resources"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-
+       "lib/**/*.jar"
     ]
-}
+ }
+ 
+
+
+
+
