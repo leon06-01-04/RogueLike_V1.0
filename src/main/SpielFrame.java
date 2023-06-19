@@ -27,16 +27,5 @@ public class SpielFrame extends JFrame {
    
     
 
-       /* for(int row = 0; row < FIELD_SIZE; row++) {
-
-            for(int col = 0 ; col < FIELD_SIZE;col++) {
-                int x = col * CELL_SIZE;
-                int y = row * CELL_SIZE;
-                g.setColor(Color.WHITE);
-                g.fillRect(x, y, CELL_SIZE, CELL_SIZE);
-                g.setColor(Color.BLACK);
-                g.drawRect(x, y, CELL_SIZE, CELL_SIZE);
-
-            }*/
         
 

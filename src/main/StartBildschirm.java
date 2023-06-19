@@ -62,7 +62,7 @@ public class StartBildschirm extends Main {
         frame.setVisible(true);
         /*this.addKeyListener(keyH);
         this.setFocusable(true); // focus um den Tastendruck zu bekommen
-        */ 
+        */
     });
     
     }

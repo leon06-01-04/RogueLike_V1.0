@@ -15,7 +15,7 @@ public  Mobs(int x, int y, int ID, int enemyType){
     //super ist zum Aufrufen eines Konstruktor einer anderen Klassen (durch extends)
     int height = 25;
     int width = 25;   
-    (SpielPanel Frame Size);
+    //(SpielPanel Frame Size);
     
 
     bounds = new Rectangle((int)x, (int)y, 25, 25);
@@ -34,9 +34,10 @@ public int getY(){
 public int getX(){
     return x;
 }
-public Rectangle getBounds(){
+/*public Rectangle getBounds(){
     return new Rectangle((int) x, (int) y, width, height);
 }
+*/
 public int getHealth(){
     return health;
 }
@@ -45,6 +46,8 @@ public int getID(){
 }
 public int enemyType(){
     return enemyType;
+
+}
 }
 //return methoden um die information zu bekommen
-}
+

@@ -7,7 +7,8 @@ import java.util.LinkedList;
 public class HandlerCreature {
 
     private BufferedImage[] firstMob = new BufferedImage[1];
-
+    int x;
+    int y;
     public void tick() {
       //updaten des objects
        
