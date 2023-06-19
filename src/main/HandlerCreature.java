@@ -22,6 +22,7 @@ public class HandlerCreature {
         g.drawImage(firstMob[0],(int) x, (int) y, null);
     }
   }
+  //cake
 
 
   
