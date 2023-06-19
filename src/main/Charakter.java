@@ -189,4 +189,3 @@ public class Charakter extends Entity implements ActionListener {
     }
 
 }
-

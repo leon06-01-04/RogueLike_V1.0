@@ -18,6 +18,7 @@ public  Mobs(int x, int y, int ID, int enemyType){
     (SpielPanel Frame Size);
     
 
+
     bounds = new Rectangle((int)x, (int)y, 25, 25);
  // this. ist zum variablen vereinen so das alles in einem gespeichert wird.
  // rectangle ist zum Hitbox machen 
