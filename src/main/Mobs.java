@@ -25,6 +25,7 @@ public  Mobs(int x, int y, int ID, int enemyType,HandlerCreature handler, Sprite
  // rectangle ist zum Hitbox machen 
  
 }
+@Override
 public void tick(){
     x +=VelX;
     y +=VelY;
@@ -58,9 +59,11 @@ public int enemyType(){
     return enemyType;
 }
 //return methoden um die information zu bekommen
+@Override
 public void render(Graphics g){
     g.drawImage(fish_image[0], (int) x, (int) y,null);
 }
+@Override
 public Rectangle getBounds(){
     return new Rectangle((int) x, (int) y, width, height);
 }
