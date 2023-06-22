@@ -34,6 +34,7 @@ public void tick(){
         if(tempObject.getId() == ID.Charakter) {
             diffX = x - tempObject.getX() - width;
             diffY = y - tempObject.getX() - height;
+            distance = (float)Math.sqrt((x - tempObject.getX()) * (x - tempObject.getX()) + (y - tempObject.getY()) *  (y - tempObject.getY()));
         }
     }
 }
