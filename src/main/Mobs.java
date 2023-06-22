@@ -35,12 +35,14 @@ public void tick(){
         if(tempObject.getId() == ID.Charakter) {
             diffX = x - tempObject.getX() - width;
             diffY = y - tempObject.getX() - height;
-            distance = (float)Math.sqrt((x - tempObject.getX()) * (x - tempObject.getX()) + (y - tempObject.getY()) *  (y - tempObject.getY()));
+            distance = (float)Math.sqrt((x - tempObject.getX()) * (x - tempObject.getX()) + (y - tempObject.getY()) *  (y - tempObject.getY())); 
+            //ausrechnung von der Distance
         }
     }
     if(distance != 0) {
         velX = ((-1 / distance) * diffX);
         velY = ((-1 / distance) * diffY);
+        //wenn er nicht in dem entity drin ist verfolgt er ihn
     }
 }
 public int getY(){
@@ -62,6 +64,7 @@ public int enemyType(){
 @Override
 public void render(Graphics g){
     g.drawImage(fish_image[0], (int) x, (int) y,null);
+    //erzeugt das Bild von dem Mob
 }
 @Override
 public Rectangle getBounds(){
