@@ -26,18 +26,22 @@ public  Mobs(int x, int y, int ID, int enemyType,HandlerCreature handler, Sprite
  
 }
 public void tick(){
-    x +=Velx;
-    y +=Vely;
+    x +=VelX;
+    y +=VelY;
     //schnelligkeit der Mobs
+    for(int i = 0; i < handler.object.size();i++){
+        GameObject tempObject = handler.object.get(i);
+        if(tempObject.getId() == ID.Charakter) {
+            diffX = x - tempObject.getX() - width;
+            diffY = y - tempObject.getX() - height;
+        }
+    }
 }
 public int getY(){
     return y;
 }
 public int getX(){
     return x;
-}
-public Rectangle getBounds(){
-    return new Rectangle((int) x, (int) y, width, height);
 }
 public int getHealth(){
     return health;
