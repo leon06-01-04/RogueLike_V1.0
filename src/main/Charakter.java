@@ -7,6 +7,7 @@ import java.awt.*;
 public class Charakter extends Entity implements ActionListener {
 
     String name = "Jannik"; 
+    int health = 3;
 
     public Charakter(int x, int y, int ID, int health) {
         //Konstruktor für Charakter
@@ -84,7 +85,7 @@ public class Charakter extends Entity implements ActionListener {
 
                 
             
-                    if (SpielPanel.mobX == swordAoE_X [i] [j] && SpielPanel.mobY == swordAoE_Y [i] [j] ) {
+                    if (SpielPanel.mobX == swordAoE_X [i] [j] && SpielPanel.mobY == swordAoE_Y [i] [j] ) { //maybe andere Variable
 
                         swordHitConnects = true;
 
