@@ -49,4 +49,11 @@ public int enemyType(){
     return enemyType;
 }
 //return methoden um die information zu bekommen
+public void render(Graphics g){
+    g.drawImage(fish_image[0], (int) x, (int) y,null);
+}
+public Rectangle getBounds(){
+    return new Rectangle((int) x, (int) y, width, height);
+}
+
 }
