@@ -37,6 +37,10 @@ public void tick(){
             distance = (float)Math.sqrt((x - tempObject.getX()) * (x - tempObject.getX()) + (y - tempObject.getY()) *  (y - tempObject.getY()));
         }
     }
+    if(distance != 0) {
+        velX = ((-1 / distance) * diffX);
+        velY = ((-1 / distance) * diffY);
+    }
 }
 public int getY(){
     return y;
