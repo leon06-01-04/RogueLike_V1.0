@@ -214,13 +214,13 @@ public class SpielPanel extends JPanel implements Runnable {
         
      
         
-        for (int row = 0; row < FIELD_SIZE; row++) {
+        for (int i = 0; i < FIELD_SIZE; i++) {
             
-            for (int col = 0; col < FIELD_SIZE; col++) {
-                int x = col * CELL_SIZE;
-                int y = row * CELL_SIZE;
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                int x = j * CELL_SIZE;
+                int y = i * CELL_SIZE;
                 
-                if (row == 0 || row == FIELD_SIZE - 1 || col == 0 || col == FIELD_SIZE - 1) {
+                if (i == 0 || i == FIELD_SIZE - 1 || j == 0 || j == FIELD_SIZE - 1) {
                     graphics.setColor(Color.GRAY);
                     graphics.fillRect(x, y, CELL_SIZE, CELL_SIZE); // Raster wird grau ausgefüllt
                     
