@@ -29,9 +29,11 @@ public void speed(int x,int y){
     this.y +=y;
     //schnelligkeit der Mobs
 }
+@Override
 public int getY(){
     return y;
 }
+@Override
 public int getX(){
     return x;
 }
@@ -51,8 +53,3 @@ public int enemyType(){
 }
 }
 //return methoden um die information zu bekommen
-<<<<<<< HEAD
-
-=======
-}
->>>>>>> main

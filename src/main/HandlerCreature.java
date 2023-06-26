@@ -6,14 +6,9 @@ import java.util.LinkedList;
 
 public class HandlerCreature {
 
-<<<<<<< HEAD
     private BufferedImage[] firstMob = new BufferedImage[1];
     int x;
     int y;
-=======
-    public ArrayList<GameObject> object = new ArrayList<GameObject>();
-
->>>>>>> main
     public void tick() {
       //updaten des objects
        for(int i = 0; i < object.size(); i ++) {
@@ -23,10 +18,7 @@ public class HandlerCreature {
           }
         }
 
-<<<<<<< HEAD
     
-=======
->>>>>>> main
 
     public void render(Graphics g) {
            //das rendern von Grafiken

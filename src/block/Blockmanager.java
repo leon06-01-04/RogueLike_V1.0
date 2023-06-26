@@ -1,6 +1,7 @@
 package block;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,36 +35,10 @@ public class Blockmanager {
         loadMap("2t");
     }
 
-    private void getBlockImage() {
+    public ImageIcon getBlockImage() {
 
-        // ImageIcon icon = new ImageIcon("dirt.png");
-
-        try {
-            Block block = new Block();
-            block.image = ImageHandler.readImage("resources\\grass.png");
-            blockMap.put(0, block);
-
-            block = new Block();
-            block.image = ImageHandler.readImage("resources\\water.png");
-            blockMap.put(1, block);
-
-            block = new Block();
-            block.image = ImageHandler.readImage("resources\\wall_stone.png");
-            blockMap.put(2, block);
-
-            block = new Block();
-            block.image = ImageHandler.readImage("resources\\dirt.png");
-            blockMap.put(3, block);
-
-            block = new Block();
-            block.image = ImageHandler.readImage("resources\\sand.png");
-            blockMap.put(4, block);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
+         ImageIcon image = new ImageIcon("dirt.png");
+        return image;
     }
 
     public BufferedImage getTile(int tileName) {

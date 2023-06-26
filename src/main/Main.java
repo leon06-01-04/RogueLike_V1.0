@@ -7,6 +7,7 @@ public class Main {
         System.out.println("Herzlich Willkommen");
         
         SpielPanel spielpanel = new SpielPanel();
+        
         spielpanel.playMusic(0);
         
 

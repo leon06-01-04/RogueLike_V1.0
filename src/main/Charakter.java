@@ -52,7 +52,8 @@ public class Charakter extends Entity implements ActionListener {
     }
       
         //Fighting Methoden
-            // Sword
+        // Sword
+
     public void CastSwordHit() {
 
         /*Hier werden die X und Y Koordinaten der Zellen um den Spieler deklariert. 
@@ -61,7 +62,7 @@ public class Charakter extends Entity implements ActionListener {
 
         Bei CastSwordHit soll in einem Radius von 2 die Umgebung via AoE attakiert werden */
         
-
+        
         //1. linke Spalte                                                   //2. linke Spalte                                                  //mittlere Spalte                           //1. rechte Spalte                                                 //2. rechte Spalte
         swordAoE_X [0] [0] = SpielPanel.playerX - 2*SpielPanel.CELL_SIZE;   swordAoE_X [1] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [2] [0] = SpielPanel.playerX;    swordAoE_X [3] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    swordAoE_X [4] [0] = SpielPanel.playerX + 2*SpielPanel.CELL_SIZE; 
         swordAoE_X [0] [1] = SpielPanel.playerX - 2*SpielPanel.CELL_SIZE;   swordAoE_X [1] [1] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    swordAoE_X [2] [1] = SpielPanel.playerX;    swordAoE_X [3] [1] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    swordAoE_X [4] [1] = SpielPanel.playerX + 2*SpielPanel.CELL_SIZE;
@@ -70,7 +71,8 @@ public class Charakter extends Entity implements ActionListener {
         swordAoE_Y [0] [0] = SpielPanel.playerY - 2*SpielPanel.CELL_SIZE;   swordAoE_Y [1] [0] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [2] [0] = SpielPanel.playerY;    swordAoE_Y [3] [0] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    swordAoE_Y [4] [0] = SpielPanel.playerY + 2*SpielPanel.CELL_SIZE; 
         swordAoE_Y [0] [1] = SpielPanel.playerY - 2*SpielPanel.CELL_SIZE;   swordAoE_Y [1] [1] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [2] [1] = SpielPanel.playerY;    swordAoE_Y [3] [1] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    swordAoE_Y [4] [1] = SpielPanel.playerY + 2*SpielPanel.CELL_SIZE;
         swordAoE_Y [0] [2] = SpielPanel.playerY - 2*SpielPanel.CELL_SIZE;   swordAoE_Y [1] [2] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    swordAoE_Y [2] [2] = SpielPanel.playerY;    swordAoE_Y [3] [2] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    swordAoE_Y [4] [2] = SpielPanel.playerY + 2*SpielPanel.CELL_SIZE;
-                                        //mit der Hilfe von Andrei
+        
+        //mit der Hilfe von Andrei
 
         if (!CooldownSword) { //soll auch nicht möglich sein wenn Shieldblock aktiv ist 
        
@@ -127,7 +129,7 @@ public class Charakter extends Entity implements ActionListener {
             /* Selbe Prinzip wie bei swordAoE_X und swordAoE_Y
                Hier wird im Radius von 1 ein Shield erstellt das den Spieler beim durchlaufen von Mobs vor Schaden schützt,
                gleichzeitig aber verhindert Schaden selbst zu machen
-            */
+           
 
         //2. linke Spalte                                                   //mittlere Spalte                            //1. rechte Spalte                                                 
         shieldAoE_X [1] [0] = SpielPanel.playerX - SpielPanel.CELL_SIZE;    shieldAoE_X [2] [0] = SpielPanel.playerX;    shieldAoE_X [3] [0] = SpielPanel.playerX + SpielPanel.CELL_SIZE;    
@@ -138,7 +140,7 @@ public class Charakter extends Entity implements ActionListener {
         shieldAoE_Y [1] [1] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    shieldAoE_Y [2] [1] = SpielPanel.playerY;    shieldAoE_Y [3] [1] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    
         shieldAoE_Y [1] [2] = SpielPanel.playerY - SpielPanel.CELL_SIZE;    shieldAoE_Y [2] [2] = SpielPanel.playerY;    shieldAoE_Y [3] [2] = SpielPanel.playerY + SpielPanel.CELL_SIZE;    
                                         //mit der Hilfe von Andrei
-
+        */
         if (!CooldownShield) {
             System.out.println("Shieldblock active");
             startCooldownShield();
@@ -180,12 +182,15 @@ public class Charakter extends Entity implements ActionListener {
         if (health <= 2) {
             health = health + 3;
             System.out.println(health);
-        } else {
+        } 
+        else {
             health = 5;
             System.out.println(health);
         }
 
         return health;
     }
+    
+    
 
 }
