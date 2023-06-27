@@ -39,12 +39,8 @@ public class HandlerCreature {
   //cake
 
 
-<<<<<<< HEAD
   
 
     
 
 
-=======
-}
->>>>>>> main
