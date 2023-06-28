@@ -85,7 +85,6 @@ public class Charakter extends Entity implements ActionListener {
                 for (int j = 0; j>3; j++ ) {
 
                 
-            
                     if (SpielPanel.mobX == swordAoE_X [i] [j] && SpielPanel.mobY == swordAoE_Y [i] [j] ) {
 
                         swordHitConnects = true;

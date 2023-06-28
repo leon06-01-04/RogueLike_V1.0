@@ -17,6 +17,9 @@ this.ID = ID;
 this.health = health;
 }
 
+public Entity(int x2, int y2, int iD2) {
+}
+
 public void tick() {
 
 }

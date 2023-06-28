@@ -1,55 +1,48 @@
 package main;
-import java.awt.Rectangle;
 
+import java.awt.Rectangle;
 
 public class Mobs extends Entity {
 
-int enemyType;
-Rectangle bounds;
+    private Rectangle bounds;
+    private int health;
 
+    // Variablen für die Gegner
+    public Mobs(int x, int y, int ID) {
+        super(x, y, ID);
+        // super ist zum Aufrufen eines Konstruktors einer anderen Klasse (durch extends)
+        int height = SpielPanel.CELL_SIZE;
+        int width = SpielPanel.CELL_SIZE;
 
+        int mobSize = height;
+        
+        bounds = new Rectangle(x, y, width, height);
+    }
 
-//variablen für die Gegner
-public  Mobs(int x, int y, int ID, int enemyType){
-    super(x, y, ID, enemyType);
-    //super ist zum Aufrufen eines Konstruktor einer anderen Klassen (durch extends)
-    int height = 25;
-    int width = 25;   
-    //(SpielPanel Frame Size);
-    
+    // Methode, um die Position der Mobs zu ändern
+    public void move(int deltaX, int deltaY) {
+        x += deltaX;
+        y += deltaY;
+    }
 
+    // Getter-Methoden
+    public int getX() {
+        return x;
+    }
 
-    bounds = new Rectangle((int)x, (int)y, 25, 25);
- // this. ist zum variablen vereinen so das alles in einem gespeichert wird.
- // rectangle ist zum Hitbox machen 
- // float ist zum positionen eingeben
-}
-public void speed(int x,int y){
-    this.x +=x;
-    this.y +=y;
-    //schnelligkeit der Mobs
-}
-@Override
-public int getY(){
-    return y;
-}
-@Override
-public int getX(){
-    return x;
-}
-/*public Rectangle getBounds(){
-    return new Rectangle((int) x, (int) y, width, height);
-}
-*/
-public int getHealth(){
-    return health;
-}
-public int getID(){
-    return ID;
-}
-public int enemyType(){
-    return enemyType;
+    public int getY() {
+        return y;
+    }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    // Weitere Methoden für Mobs
+    // ...
 }
-}
-//return methoden um die information zu bekommen
+
