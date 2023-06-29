@@ -51,7 +51,8 @@ public class Charakter extends Entity implements ActionListener {
             stopCooldownSword();
         } else if (e.getSource() == cooldownTimerShield) {
             stopCooldownShield();
-        } 
+        } else if (e.getSource() == activeTimerShield) {
+            stopActiveTimerShield();
     }
       
         //Fighting Methoden
@@ -139,6 +140,8 @@ public class Charakter extends Entity implements ActionListener {
             startActiveTimerShield();
                 
             if (activeShield == true) {
+
+                damageProtection == true;
                 System.out.println("cant take dmg");
             }
 
