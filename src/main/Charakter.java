@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Charakter extends Entity implements ActionListener {
 
-    String name = "Jannik"; 
+    int health = 3;
 
     public Charakter(int x, int y, int ID, int health) {
         //Konstruktor für Charakter
@@ -24,15 +24,18 @@ public class Charakter extends Entity implements ActionListener {
     // Fighting
         //Initialisierung der boolean Variablen für die Cooldowns und der aktivierung der Fähigkeit
             //Sword
+              //Sword
     public boolean CooldownSword;
     public boolean swordHitConnects;
             //Shield
     public boolean CooldownShield;
+    public boolean activeShield;
     public boolean damageProtection;
 
         //Timer die Cooldowns als true or false definieren
     public Timer cooldownTimerSword = new Timer(1000, this);
-    public Timer cooldownTimerShield = new Timer(5000, this);
+    public Timer cooldownTimerShield = new Timer(10000, this);
+    public Timer activeTimerShield = new Timer(5000, this);
     public Timer cooldownTimerShot = new Timer(8000, this);
 
         //Arrays für den AoE_Effekt der CastSwordHit Methode
@@ -43,12 +46,14 @@ public class Charakter extends Entity implements ActionListener {
     private int shieldAoE_Y[] [] = new int [3] [3];
 
         //Überprüfung der Inputs/Events des Kampfes
-    public void actionPerformed(ActionEvent e) {
+     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cooldownTimerSword) {
             stopCooldownSword();
         } else if (e.getSource() == cooldownTimerShield) {
             stopCooldownShield();
-        } 
+        } else if (e.getSource() == activeTimerShield) {
+            stopActiveTimerShield();
+    }
     }
       
         //Fighting Methoden
@@ -74,18 +79,19 @@ public class Charakter extends Entity implements ActionListener {
         
         //mit der Hilfe von Andrei
 
-        if (!CooldownSword) { //soll auch nicht möglich sein wenn Shieldblock aktiv ist 
+        if (!CooldownSword && !activeShield) { //soll auch nicht möglich sein wenn Shieldblock aktiv ist 
        
         //Abfrage nach laufendem Cooldown
 
             System.out.println("SwordHit");
             startCooldownSword();
   
-            for (int i = 0; i>5; i++) {
-                for (int j = 0; j>3; j++ ) {
+            for (int i = 0; i<5; i++) {
+                for (int j = 0; j<3; j++ ) {
 
                 
-                    if (SpielPanel.mobX == swordAoE_X [i] [j] && SpielPanel.mobY == swordAoE_Y [i] [j] ) {
+                  
+                            if (SpielPanel.mobX == swordAoE_X [i] [j] && SpielPanel.mobY == swordAoE_Y [i] [j] ) { //maybe andere Variable
 
                         swordHitConnects = true;
 
@@ -103,6 +109,7 @@ public class Charakter extends Entity implements ActionListener {
             System.out.println("No Swordhit");    
         }
     }
+    
         //Unvollständig
 
     private void startCooldownSword() {
@@ -167,28 +174,40 @@ public class Charakter extends Entity implements ActionListener {
 
     // health
         //Schadenskalkulation nach dem der Spieler getroffen wurde
-    public int reduceHealth(int health) {
+    public void reduceHealth(int health) {
 
         health--;
         System.out.println(health);
-        return health;
+        
 
+    }
+       private void startActiveTimerShield() {
+        activeShield = true;
+        activeTimerShield.start();
+        System.out.println("Shield: Aktiv");
+    }
+
+    private void stopActiveTimerShield() {
+        activeShield = false;
+        activeTimerShield.stop();
+        System.out.println("Shield: Nicht mehr Aktiv");
     }
 
         //(Teilweise) Reneration von Leben beim wechseln des Raumes
-    public int regenerateHealth(int health) {
+    public void regenerateHealth() {
 
-        if (health <= 2) {
-            health = health + 3;
+        if (health <= 1) {
+            health++;
             System.out.println(health);
         } 
         else {
-            health = 5;
+            health = 3;
             System.out.println(health);
         }
 
-        return health;
+        
     }
+      //(Teilweise) Reneration von Leben beim wechseln des Raumes
     
     
 

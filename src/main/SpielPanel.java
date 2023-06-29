@@ -17,7 +17,7 @@ public class SpielPanel extends JPanel implements Runnable {
     Random random;
     Label label;
 
-    Charakter player = new Charakter(10, 10, 0, 5);
+    Charakter player = new Charakter(10, 10, 0, 3);
     Mobs mobs = new Mobs(CELL_SIZE,CELL_SIZE,1);
     SpriteSheet Sprites = new SpriteSheet(null);
     ImageIcon blockImage;
@@ -58,12 +58,12 @@ public class SpielPanel extends JPanel implements Runnable {
     static final int SCREEN_HEIGHT = 1050; // final = ein zugewiesener wert und endvariable erhält immer gleichen wert
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / CELL_SIZE;
     static final int FPS = 30; // bilder pro Sekunde
-
-    public static int playerX = CELL_SIZE * 2; // X-Koordinate des Spielers
-    public static int playerY = CELL_SIZE * 2; // Y-Koordinate des Spielers
+    //position Spieler
+    public static int playerX = CELL_SIZE * 2; 
+    public static int playerY = CELL_SIZE * 2;
     // position mobs
-    public static int mobX = CELL_SIZE * 2;
-    public static int mobY = CELL_SIZE * 2;
+    public static int mobX = CELL_SIZE * (FIELD_SIZE-3);
+    public static int mobY = CELL_SIZE * (FIELD_SIZE-3);
 
     private int playerSize = CELL_SIZE; // Größe des Spielers
     private int mobSize = CELL_SIZE; // Größe des Spielers
@@ -80,21 +80,19 @@ public class SpielPanel extends JPanel implements Runnable {
         // versucht die png Datei für den spieler zu finden
 
         try {
-
             image = ImageIO.read(new File("resources\\player.png")); // Bild des Spielers
         } catch (IOException e) {
             e.printStackTrace();
         }
          try {
-            mob = ImageIO.read(new File("resources\\mob.png")); // Bild des Spielers
+            mob = ImageIO.read(new File("resources\\mob.png")); // Bild des gegners/mobs
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         sideText.setBounds(960, 100, 350, 100);
         sideText.setFont(fontTarea); // schrift für die anzeige einfuegen
-        // sideText.setText("Willkommen in ...\n Drücken sie WASD um \n sich zu
-        // Bewegen");
+        // sideText.setText("Willkommen in ...\n Drücken sie WASD um \n sich zu Bewegen")
         sideText.setForeground(Color.WHITE); // schriftfarbe weiß
         sideText.setBackground(Color.BLACK);
         sideText.setEditable(false); // text kann nicht verändert werden
@@ -235,10 +233,8 @@ public class SpielPanel extends JPanel implements Runnable {
                     graphics.fillRect(x, y, CELL_SIZE, CELL_SIZE); // Raster wird grau ausgefüllt
 
                 } else {
-
                     graphics.setColor(Color.WHITE);
 
-                  
                 }
 
                 graphics.fillRect(x, y, CELL_SIZE, CELL_SIZE); // Raster wird schwarz ausgefüllt
@@ -248,11 +244,12 @@ public class SpielPanel extends JPanel implements Runnable {
                 graphics.fillRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
                 graphics.setColor(Color.BLACK);
                 graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
-                Graphics2D g2D = (Graphics2D) graphics;
+                
                 graphics.setColor(Color.WHITE);
-                // g2D.fillRect(playerX, playerY, CELL_SIZE, CELL_SIZE);
-                graphics.drawImage(image, playerX, playerY, CELL_SIZE, CELL_SIZE, null); // spieler wird eingefuegt
+                //graphics.setColor(Color.GREEN);
+                //graphics.fillRect(mobX, mobY, CELL_SIZE,CELL_SIZE);
                 graphics.drawImage(mob, mobX, mobY, CELL_SIZE,CELL_SIZE,null);
+                graphics.drawImage(image, playerX, playerY, CELL_SIZE, CELL_SIZE, null); // spieler wird eingefuegt
                 if (playerX > (FIELD_SIZE - 2) * CELL_SIZE) { // wenn der spieler ausßerhalb des spielfelds läuft, wird
                                                               // er um ein feld zurückgesetzt
                     playerX--;
@@ -271,7 +268,7 @@ public class SpielPanel extends JPanel implements Runnable {
                     displayGold.setText("Gold:" + this.countGold);
                     randomNum();
                 }
-                if (countGold > 5) {
+                if (countGold >= 5) {
                     nextLvl(graphics);
                 }
             }

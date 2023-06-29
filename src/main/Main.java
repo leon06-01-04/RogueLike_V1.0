@@ -9,7 +9,6 @@ public class Main {
         SpielPanel spielpanel = new SpielPanel();
         
         spielpanel.playMusic(0);
-        
 
     }
 }
