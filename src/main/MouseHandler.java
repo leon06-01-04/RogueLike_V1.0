@@ -26,14 +26,14 @@ public class MouseHandler implements MouseListener {
     }
 
         public void mouseClicked(MouseEvent e) {
-
+        //leer
     }
 
     public void mouseEntered(MouseEvent e) {
-
+        //leer
     }
 
     public void mouseExited(MouseEvent e) {
-
+        //leer
     }
 }

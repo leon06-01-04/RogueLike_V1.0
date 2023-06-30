@@ -18,7 +18,7 @@ public class SpielPanel extends JPanel implements Runnable {
     Label label;
 
     Charakter player = new Charakter(10, 10, 0, 3);
-    Mobs mobs = new Mobs(CELL_SIZE,CELL_SIZE,1);
+    Mobs mobs = new Mobs(CELL_SIZE, CELL_SIZE, 1);
     SpriteSheet Sprites = new SpriteSheet(null);
     ImageIcon blockImage;
     ImageIcon healthimage;
@@ -34,7 +34,9 @@ public class SpielPanel extends JPanel implements Runnable {
     BufferedImage image;
     BufferedImage mob;
     Graphics hitG;
+    BufferedImage loader;
 
+    HandlerCreature handlerCreature;
     KeyHandler keyHandler = new KeyHandler();
     MouseHandler mouseHandler = new MouseHandler();
     Sound sound = new Sound();
@@ -58,12 +60,12 @@ public class SpielPanel extends JPanel implements Runnable {
     static final int SCREEN_HEIGHT = 1050; // final = ein zugewiesener wert und endvariable erhält immer gleichen wert
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / CELL_SIZE;
     static final int FPS = 30; // bilder pro Sekunde
-    //position Spieler
-    public static int playerX = CELL_SIZE * 2; 
+    // position Spieler
+    public static int playerX = CELL_SIZE * 2;
     public static int playerY = CELL_SIZE * 2;
     // position mobs
-    public static int mobX = CELL_SIZE * (FIELD_SIZE-3);
-    public static int mobY = CELL_SIZE * (FIELD_SIZE-3);
+    public static int mobX = CELL_SIZE * 4;// (FIELD_SIZE-3);
+    public static int mobY = CELL_SIZE * 4;// (FIELD_SIZE-3);
 
     private int playerSize = CELL_SIZE; // Größe des Spielers
     private int mobSize = CELL_SIZE; // Größe des Spielers
@@ -84,7 +86,7 @@ public class SpielPanel extends JPanel implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-         try {
+        try {
             mob = ImageIO.read(new File("resources\\mob.png")); // Bild des gegners/mobs
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,7 +94,8 @@ public class SpielPanel extends JPanel implements Runnable {
 
         sideText.setBounds(960, 100, 350, 100);
         sideText.setFont(fontTarea); // schrift für die anzeige einfuegen
-        // sideText.setText("Willkommen in ...\n Drücken sie WASD um \n sich zu Bewegen")
+        // sideText.setText("Willkommen in ...\n Drücken sie WASD um \n sich zu
+        // Bewegen")
         sideText.setForeground(Color.WHITE); // schriftfarbe weiß
         sideText.setBackground(Color.BLACK);
         sideText.setEditable(false); // text kann nicht verändert werden
@@ -124,18 +127,17 @@ public class SpielPanel extends JPanel implements Runnable {
         this.add(displayGold);
         randomNum();
     }
-    /*
-     * public void init(){
-     * // Initialisierung
-     * handlerCreature = new HandlerCreature();
-     * 
-     * BufferedImageLoader loader = new BufferedImageLoader();
-     * sprite_sheet = loader.loadImage("/");
-     * //Sprite Sheet fehlt deswegen nichts hinter /
-     * ss = new SpriteSheet(sprite_sheet);
-     * //damit kann man jeden part von dem Spritesheet benutzen kann
-     * }
-     */
+
+    public void init() {
+        handlerCreature = new HandlerCreature();
+
+       /*  loader = new BufferedImage();
+        sprite_sheet = loader.loadImage("/");
+        */
+        // Sprite Sheet fehlt deswegen nichts hinter /
+        ss = new SpriteSheet(sprite_sheet);
+        // damit kann man jeden part von dem Spritesheet benutzen kann
+    }
 
     @Override
     public void run() {
@@ -149,7 +151,7 @@ public class SpielPanel extends JPanel implements Runnable {
         long currentTime;
         long timer = 0;
         long drawCount = 0;
-        // init();
+        init();
         while (gameThread != null) {
 
             currentTime = System.nanoTime();
@@ -219,6 +221,7 @@ public class SpielPanel extends JPanel implements Runnable {
 
     }
 
+    @Override
     public void paintComponent(Graphics graphics) { // java methode in fenster zu zeichnen
         super.paintComponent(graphics);
 
@@ -244,11 +247,11 @@ public class SpielPanel extends JPanel implements Runnable {
                 graphics.fillRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
                 graphics.setColor(Color.BLACK);
                 graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
-                
+
                 graphics.setColor(Color.WHITE);
-                //graphics.setColor(Color.GREEN);
-                //graphics.fillRect(mobX, mobY, CELL_SIZE,CELL_SIZE);
-                graphics.drawImage(mob, mobX, mobY, CELL_SIZE,CELL_SIZE,null);
+                // graphics.setColor(Color.GREEN);
+                // graphics.fillRect(mobX, mobY, CELL_SIZE,CELL_SIZE);
+                graphics.drawImage(mob, mobX, mobY, CELL_SIZE, CELL_SIZE, null);
                 graphics.drawImage(image, playerX, playerY, CELL_SIZE, CELL_SIZE, null); // spieler wird eingefuegt
                 if (playerX > (FIELD_SIZE - 2) * CELL_SIZE) { // wenn der spieler ausßerhalb des spielfelds läuft, wird
                                                               // er um ein feld zurückgesetzt
@@ -287,7 +290,7 @@ public class SpielPanel extends JPanel implements Runnable {
 
     public int countGold(int countGold, Graphics graphics) {
 
-        this.countGold++; //goldanzahl wird erhöht sobald position identisch
+        this.countGold++; // goldanzahl wird erhöht sobald position identisch
         countGold = this.countGold;
         displayGold.setText("Gold:" + countGold);
         graphics.setColor(Color.white);
