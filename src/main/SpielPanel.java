@@ -16,9 +16,10 @@ public class SpielPanel extends JPanel implements Runnable {
 
     Random random;
     Label label;
+    static String language = "Deutsch";
 
     Charakter player = new Charakter(10, 10, 0, 3);
-    Mobs mobs = new Mobs(CELL_SIZE, CELL_SIZE, 1);
+   // Mobs mobs = new Mobs(CELL_SIZE, CELL_SIZE, 1);
     SpriteSheet Sprites = new SpriteSheet(null);
     ImageIcon blockImage;
     ImageIcon healthimage;
@@ -45,16 +46,13 @@ public class SpielPanel extends JPanel implements Runnable {
     int randomNumberX; //
     int countGold = 0;
 
-    private static String language;
+    
 
     public static final int FIELD_SIZE = 32; // größe des Kompletten Spielfeldes
     public static final int CELL_SIZE = 30; // größe der Felder
     private static final int DELAY = 70; // verzögerung um den Spieler zu verlangsamen
 
     public Blockmanager blockmanager = new Blockmanager(this);
-
-    private SpriteSheet ss;
-    private BufferedImage sprite_sheet;
 
     static final int SCREEN_WIDTH = 2400;
     static final int SCREEN_HEIGHT = 1050; // final = ein zugewiesener wert und endvariable erhält immer gleichen wert
@@ -69,7 +67,7 @@ public class SpielPanel extends JPanel implements Runnable {
 
     private int playerSize = CELL_SIZE; // Größe des Spielers
     private int mobSize = CELL_SIZE; // Größe des Spielers
-
+    
     SpielPanel() {
         super();
         fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20); // schriftart erstellen
@@ -92,10 +90,8 @@ public class SpielPanel extends JPanel implements Runnable {
             e.printStackTrace();
         }
 
-        sideText.setBounds(960, 100, 350, 100);
+        sideText.setBounds(960, 100, 450, 100);
         sideText.setFont(fontTarea); // schrift für die anzeige einfuegen
-        // sideText.setText("Willkommen in ...\n Drücken sie WASD um \n sich zu
-        // Bewegen")
         sideText.setForeground(Color.WHITE); // schriftfarbe weiß
         sideText.setBackground(Color.BLACK);
         sideText.setEditable(false); // text kann nicht verändert werden
@@ -125,19 +121,24 @@ public class SpielPanel extends JPanel implements Runnable {
         this.add(sideText);
         this.add(displayFPS);
         this.add(displayGold);
+        setLanguage(language);
         randomNum();
+       
     }
-
-    public void init() {
+    
+    private SpriteSheet ss;
+    private BufferedImage sprite_sheet;
+    /*public void init() {
         handlerCreature = new HandlerCreature();
-
-       /*  loader = new BufferedImage();
+        
+        BufferedImageLoader loader = new BufferedImageLoader();
+        sprite_sheet = loader.loadImage("/mob.png");
+        //Sprite Sheet fehlt deswegen nichts hinter /
         sprite_sheet = loader.loadImage("/");
-        */
-        // Sprite Sheet fehlt deswegen nichts hinter /
+        //damit kann man jeden part von dem Spritesheet benutzen kann
         ss = new SpriteSheet(sprite_sheet);
         // damit kann man jeden part von dem Spritesheet benutzen kann
-    }
+    }*/
 
     @Override
     public void run() {
@@ -151,7 +152,7 @@ public class SpielPanel extends JPanel implements Runnable {
         long currentTime;
         long timer = 0;
         long drawCount = 0;
-        init();
+        //init();
         while (gameThread != null) {
 
             currentTime = System.nanoTime();
@@ -218,6 +219,9 @@ public class SpielPanel extends JPanel implements Runnable {
             player.CastShieldBlock();
 
         }
+        if (sideText == null) {
+            setLanguage(language);
+        }
 
     }
 
@@ -274,6 +278,9 @@ public class SpielPanel extends JPanel implements Runnable {
                 if (countGold >= 5) {
                     nextLvl(graphics);
                 }
+               
+                
+               
             }
         }
     }
@@ -330,14 +337,17 @@ public class SpielPanel extends JPanel implements Runnable {
         if (language.equals("Deutsch")) {
             System.out.println("Test d");
             sideText.setText("Willkommen in ...\n Drücken Sie WASD, um sich zu bewegen");
-        } else if (language.equals("English")) {
+        }  
+        if (language.equals("English")) {
             System.out.println("Test e");
             sideText.setText("Welcome to ...\n Press WASD to move");
-        } else if (language.equals("Français")) {
+        } 
+        if (language.equals("Francais")) {
             System.out.println("Test F");
             sideText.setText("Bienvenue à ...\n Appuyez sur WASD pour vous déplacer");
-        } else {
-            sideText.setText("Unsupported language");
-        }
+        } 
+       
+        
+        
     }
 }

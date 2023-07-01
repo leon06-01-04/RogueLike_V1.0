@@ -9,6 +9,7 @@ public class HandlerCreature {
     private BufferedImage[] firstMob = new BufferedImage[1];
     int x;
     int y;
+    public Object object;
     public void tick() {
       //updaten des objects
        for(int i = 0; i < object.size(); i ++) {

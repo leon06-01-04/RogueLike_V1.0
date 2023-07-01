@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class StartBildschirm extends Main {
-    
+
     JPanel contentPane = new JPanel();
     JPanel panel = new JPanel();
     JFrame credits = new JFrame();
@@ -15,14 +15,16 @@ public class StartBildschirm extends Main {
     JButton startBtn;
     JButton creditsBtn;
     JButton settinsBtn;
+    String language;
+    SpielPanel spielPanel = new SpielPanel();
 
     public StartBildschirm() {
 
         SwingUtilities.invokeLater(() -> {
 
             JFrame frame = new JFrame("Hello World!");
-            String[] languages = { "Deutsch", "English", "Français" };
-            languageComboBox = new JComboBox<>(languages);
+            String[] languages = { "Deutsch", "English", "Francais" };
+            languageComboBox = new JComboBox(languages);
 
             startBtn = new JButton("Start");
             startBtn.setPreferredSize(new Dimension(90, 40));
@@ -53,8 +55,10 @@ public class StartBildschirm extends Main {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("Settings!");
-                    settings();
+                   settings();
+
+                    
+                    
                 }
             });
 
@@ -84,19 +88,28 @@ public class StartBildschirm extends Main {
         settings.setLocationRelativeTo(null); // mittig platzieren
         settings.setTitle("Settings");
         settings.setVisible(true);
-        String language = (String) languageComboBox.getSelectedItem();
+        
 
-        SpielPanel.setLanguage(language);
+        
+
+            languageComboBox.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    language = (String) languageComboBox.getSelectedItem();
+                    SpielPanel.setLanguage(language);
+                }
+            });
+            
     }
 
     public void credits() {
-        JLabel creditsLabel = new JLabel("<html>Ersteller: Marc Stölzel, Jason Hein, Leon Schobert<br><br>Leon: SpielFrame, StartBildschirm, SpielPanel,Blockmanager <br>Marc: SpielFrame, StartBildschirm, SpielPanel,Blockmanager <br>Jason: SpielFrame, StartBildschirm, SpielPanel,Blockmanager</html>");
+        JLabel creditsLabel = new JLabel(
+                "<html>Ersteller: Marc Stölzel, Jason Hein, Leon Schobert<br><br>Leon: SpielFrame, StartBildschirm, SpielPanel,Blockmanager <br>Marc: SpielFrame, StartBildschirm, SpielPanel,Blockmanager <br>Jason: SpielFrame, StartBildschirm, SpielPanel,Blockmanager</html>");
         creditsLabel.setForeground(Color.BLACK);
         creditsLabel.setFont(null);
 
-        
         contentPane.setBackground(Color.ORANGE);
-        
+
         credits.setSize(400, 300);
         credits.setContentPane(contentPane);
         credits.setResizable(false);
@@ -105,9 +118,6 @@ public class StartBildschirm extends Main {
         credits.getContentPane().add(creditsLabel);
         credits.setVisible(true);
 
-    String language = (String) languageComboBox.getSelectedItem();
     }
 
-
 }
-

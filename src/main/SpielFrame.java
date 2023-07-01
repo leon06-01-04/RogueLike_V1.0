@@ -11,6 +11,7 @@ public class SpielFrame extends JFrame {
 
         spielPanel = new SpielPanel();
         spielPanel.startgameThread();
+        //spielPanel.setLanguage();
         this.add(spielPanel); //panel wird den Frame hinzugefuegt
         this.setTitle("Rogue");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,6 +20,7 @@ public class SpielFrame extends JFrame {
         this.setResizable(false);
         this.pack();
         this.setVisible(true);
+
         
     }
 }
