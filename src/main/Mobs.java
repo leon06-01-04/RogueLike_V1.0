@@ -63,7 +63,7 @@ public int enemyType(){
 //return methoden um die information zu bekommen
 @Override
 public void render(Graphics g){
-    g.drawImage(fish_image[0], (int) x, (int) y,null);
+    g.drawImage(zombie_image[0], (int) x, (int) y,null);
     //erzeugt das Bild von dem Mob
 }
 @Override
