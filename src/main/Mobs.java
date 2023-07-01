@@ -20,7 +20,7 @@ public  Mobs(int x, int y, int ID, int enemyType,HandlerCreature handler, Sprite
     this.handler = handler;
     //fish guckt nach unten
     zombie_image[0]= ss.grabImage(0,0,SpielPanel.CELL_SIZE,SpielPanel.CELL_SIZE);
-    bounds = new Rectangle((int)x, (int)y, 25, 25);
+    bounds = new Rectangle((int)x, (int)y, SpielPanel.CELL_SIZE, SpielPanel.CELL_SIZE);
  // this. ist zum variablen vereinen so das alles in einem gespeichert wird.
  // rectangle ist zum Hitbox machen 
  
