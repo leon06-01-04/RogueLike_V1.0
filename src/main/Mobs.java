@@ -7,7 +7,7 @@ float diffX, diffY, distance;
 int enemyType;
 Rectangle bounds;
 private HandlerCreature handler;
-private BufferedImage[] fish_image = new BufferedImage[4];
+private BufferedImage[] zombie_image = new BufferedImage[4];
 
 
 
@@ -15,11 +15,11 @@ private BufferedImage[] fish_image = new BufferedImage[4];
 public  Mobs(int x, int y, int ID, int enemyType,HandlerCreature handler, Spritesheet ss){
     super(x, y, ID, enemyType);
     //super ist zum Aufrufen eines Konstruktor einer anderen Klassen (durch extends)
-    height = ;
-    width = ;   
+    height = SpielPanel.CELL_SIZE;
+    width = SpielPanel.CELL_SIZE; 
     this.handler = handler;
     //fish guckt nach unten
-    fish_image[0]=
+    zombie_image[0]= ss.grabImage(0,0,SpielPanel.CELL_SIZE,SpielPanel.CELL_SIZE);
     bounds = new Rectangle((int)x, (int)y, 25, 25);
  // this. ist zum variablen vereinen so das alles in einem gespeichert wird.
  // rectangle ist zum Hitbox machen 
