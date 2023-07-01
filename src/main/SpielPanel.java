@@ -266,6 +266,7 @@ public class SpielPanel extends JPanel implements Runnable {
                 if(countGold >5) {
                     nextLvl(graphics);
                 }
+                handler.addObject(new Mobs(x, y, ID.Mobs, handler,ss));
                     
                 
             }
