@@ -115,7 +115,7 @@ public class SpielPanel extends JPanel implements Runnable {
         handlerCreature = new HandlerCreature();
 
         BufferedImageLoader loader = new BufferedImageLoader();
-        sprite_sheet = loader.loadImage("/");
+        sprite_sheet = loader.loadImage("/mob.png");
         //Sprite Sheet fehlt deswegen nichts hinter /
         ss = new SpriteSheet(sprite_sheet);
         //damit kann man jeden part von dem Spritesheet benutzen kann
