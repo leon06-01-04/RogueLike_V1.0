@@ -1,20 +1,29 @@
 package main;
 import java.awt.*;
-
+import main.ID;
  
 public class Entity {
 
 int y, x;
-int ID;
+ID id;
 String name;
 int health;
 Rectangle bounds;
+int velX, velY;
  
-public Entity(int x, int y, int ID, int health) {
+public int getVelX() {
+    return velX;
+}
+
+public int getVelY() {
+    return velY;
+}
+
+public Entity(int x, int y, ID id) {
 this.y = y;
 this.x = x;
-this.ID = ID;
-this.health = health;
+this.id = id;
+
 }
 
 public void tick() {
@@ -37,7 +46,7 @@ public int getX(){
 public int getHealth(){
     return health;
 }
-public int getID(){
-    return ID;
+public ID getID(){
+    return id;
 }
 }

@@ -1,19 +1,22 @@
 package main;
+import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import main.SpriteSheet;
 
 
 public class Mobs extends Entity {
-float diffX, diffY, distance;
+int diffX, diffY, distance;
 int enemyType;
 Rectangle bounds;
 private HandlerCreature handler;
 private BufferedImage[] zombie_image = new BufferedImage[4];
-
+int height, width;
 
 
 //variablen für die Gegner
-public  Mobs(int x, int y, int ID, int enemyType,HandlerCreature handler, Spritesheet ss){
-    super(x, y, ID, enemyType);
+public  Mobs(int x, int y,  ID id,HandlerCreature handler, SpriteSheet ss){
+    super(x, y, id);
     //super ist zum Aufrufen eines Konstruktor einer anderen Klassen (durch extends)
     height = SpielPanel.CELL_SIZE;
     width = SpielPanel.CELL_SIZE; 
@@ -27,15 +30,15 @@ public  Mobs(int x, int y, int ID, int enemyType,HandlerCreature handler, Sprite
 }
 @Override
 public void tick(){
-    x +=VelX;
-    y +=VelY;
+    x +=velX;
+    y +=velY;
     //schnelligkeit der Mobs
     for(int i = 0; i < handler.object.size();i++){
-        GameObject tempObject = handler.object.get(i);
-        if(tempObject.getId() == ID.Charakter) {
+        Entity tempObject = handler.object.get(i);
+        if(tempObject.getID() == ID.Charakter) {
             diffX = x - tempObject.getX() - width;
             diffY = y - tempObject.getX() - height;
-            distance = (float)Math.sqrt((x - tempObject.getX()) * (x - tempObject.getX()) + (y - tempObject.getY()) *  (y - tempObject.getY())); 
+            distance = (int)Math.sqrt((x - tempObject.getX()) * (x - tempObject.getX()) + (y - tempObject.getY()) *  (y - tempObject.getY())); 
             //ausrechnung von der Distance
         }
     }
@@ -54,8 +57,8 @@ public int getX(){
 public int getHealth(){
     return health;
 }
-public int getID(){
-    return ID;
+public ID getID(){
+    return id;
 }
 public int enemyType(){
     return enemyType;

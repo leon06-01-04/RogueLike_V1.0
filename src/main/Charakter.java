@@ -9,9 +9,9 @@ public class Charakter extends Entity implements ActionListener {
     
     int health = 3;
 
-    public Charakter(int x, int y, int ID, int health) {
+    public Charakter(int x, int y, ID id, int health) {
         //Konstruktor für Charakter
-        super(x, y, ID, health);
+        super(x, y, id);
     }
 
     public void tick() {
@@ -54,6 +54,7 @@ public class Charakter extends Entity implements ActionListener {
         } else if (e.getSource() == activeTimerShield) {
             stopActiveTimerShield();
     }
+  }
       
         //Fighting Methoden
             // Sword
@@ -141,7 +142,7 @@ public class Charakter extends Entity implements ActionListener {
                 
             if (activeShield == true) {
 
-                damageProtection == true;
+                damageProtection = true;
                 System.out.println("cant take dmg");
             }
 
@@ -187,7 +188,7 @@ public class Charakter extends Entity implements ActionListener {
         //(Teilweise) Reneration von Leben beim wechseln des Raumes
     public void regenerateHealth() {
 
-        if (health = 1) {
+        if (health == 1) {
             health++;
             System.out.println(health);
         } else {

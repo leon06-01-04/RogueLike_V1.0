@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import main.ID;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class SpielPanel extends JPanel implements Runnable {
 
     Random random;
 
-    Charakter player = new Charakter(10, 10, 0, 5);
+    Charakter player = new Charakter(10, 10 , ID.Charakter, 5);
     
 
     Thread gameThread; // sorgt fürs starten bzw stoppen
@@ -26,11 +27,13 @@ public class SpielPanel extends JPanel implements Runnable {
 
     Font fontTarea;
     BufferedImage image;
-
+    BufferedImageLoader loader;
+    HandlerCreature handlerCreature;
     KeyHandler keyHandler = new KeyHandler();
     MouseHandler mouseHandler = new MouseHandler();
     Sound sound = new Sound();
     
+
     int randomNumberY; //
     int randomNumberX; //
     int countGold = 0;
@@ -114,7 +117,7 @@ public class SpielPanel extends JPanel implements Runnable {
         // Initialisierung 
         handlerCreature = new HandlerCreature();
 
-        BufferedImageLoader loader = new BufferedImageLoader();
+        loader = new BufferedImageLoader();
         sprite_sheet = loader.loadImage("/mob.png");
         //Sprite Sheet fehlt deswegen nichts hinter /
         ss = new SpriteSheet(sprite_sheet);
@@ -266,7 +269,7 @@ public class SpielPanel extends JPanel implements Runnable {
                 if(countGold >5) {
                     nextLvl(graphics);
                 }
-                handler.addObject(new Mobs(x, y, ID.Mobs, handler,ss));
+                handlerCreature.addObject(new Mobs(x, y, ID.Mobs, handlerCreature,ss ));
                     
                 
             }
