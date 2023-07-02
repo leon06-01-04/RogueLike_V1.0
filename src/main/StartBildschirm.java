@@ -16,7 +16,7 @@ public class StartBildschirm extends Main {
     JButton creditsBtn;
     JButton settinsBtn;
     String language;
-    SpielPanel spielPanel = new SpielPanel();
+    
 
     public StartBildschirm() {
 

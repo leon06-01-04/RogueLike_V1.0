@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import block.Blockmanager;
-
+import main.ID;
 import java.util.Random;
 
 public class SpielPanel extends JPanel implements Runnable {
@@ -17,8 +17,7 @@ public class SpielPanel extends JPanel implements Runnable {
     Random random;
     Label label;
     static String language = "Deutsch";
-
-    Charakter player = new Charakter(10, 10, 0, 3);
+    Charakter player = new Charakter(10, 10, ID.Charakter, 3);
    // Mobs mobs = new Mobs(CELL_SIZE, CELL_SIZE, 1);
     SpriteSheet Sprites = new SpriteSheet(null);
     ImageIcon blockImage;
@@ -27,15 +26,19 @@ public class SpielPanel extends JPanel implements Runnable {
     Thread gameThread; // sorgt fürs starten bzw stoppen
 
     static JTextArea sideText;
-    JTextArea displayFPS;
-    JTextArea displayGold;
-    JTextArea displayHealth;
+    private JTextArea displayFPS;
+    private JTextArea displayGold;
+    private JTextArea displayHealth;
+    private JTextArea consoleTextArea;
+    private JTextArea displaySword;
+    private JTextArea displayShield;
+    
 
     Font fontTarea;
     BufferedImage image;
     BufferedImage mob;
     Graphics hitG;
-    BufferedImage loader;
+    BufferedImageLoader loader;
 
     HandlerCreature handlerCreature;
     KeyHandler keyHandler = new KeyHandler();
@@ -46,13 +49,16 @@ public class SpielPanel extends JPanel implements Runnable {
     int randomNumberX; //
     int countGold = 0;
 
+    String swordMessage;
+    String shieldMessage;
+
     
 
     public static final int FIELD_SIZE = 32; // größe des Kompletten Spielfeldes
     public static final int CELL_SIZE = 30; // größe der Felder
     private static final int DELAY = 70; // verzögerung um den Spieler zu verlangsamen
 
-    public Blockmanager blockmanager = new Blockmanager(this);
+   //public Blockmanager blockmanager = new Blockmanager(this); wird nicht mehr verwendet
 
     static final int SCREEN_WIDTH = 2400;
     static final int SCREEN_HEIGHT = 1050; // final = ein zugewiesener wert und endvariable erhält immer gleichen wert
@@ -62,8 +68,8 @@ public class SpielPanel extends JPanel implements Runnable {
     public static int playerX = CELL_SIZE * 2;
     public static int playerY = CELL_SIZE * 2;
     // position mobs
-    public static int mobX = CELL_SIZE * 4;// (FIELD_SIZE-3);
-    public static int mobY = CELL_SIZE * 4;// (FIELD_SIZE-3);
+    public static int mobX = CELL_SIZE * (FIELD_SIZE-3);
+    public static int mobY = CELL_SIZE * (FIELD_SIZE-3);
 
     private int playerSize = CELL_SIZE; // Größe des Spielers
     private int mobSize = CELL_SIZE; // Größe des Spielers
@@ -76,9 +82,12 @@ public class SpielPanel extends JPanel implements Runnable {
         displayFPS = new JTextArea(); // Anzeige der Bilder pro Sekunde
         displayGold = new JTextArea(); // Anzeige wie viel Gold man besitzt
         displayHealth = new JTextArea();
+        displaySword = new JTextArea("sword: ");
+        displayShield = new JTextArea("shield ");
+        
+        
 
         // versucht die png Datei für den spieler zu finden
-
         try {
             image = ImageIO.read(new File("resources\\player.png")); // Bild des Spielers
         } catch (IOException e) {
@@ -89,7 +98,7 @@ public class SpielPanel extends JPanel implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
         sideText.setBounds(960, 100, 450, 100);
         sideText.setFont(fontTarea); // schrift für die anzeige einfuegen
         sideText.setForeground(Color.WHITE); // schriftfarbe weiß
@@ -102,7 +111,7 @@ public class SpielPanel extends JPanel implements Runnable {
         displayFPS.setForeground(Color.WHITE);
         displayFPS.setBackground(Color.BLACK);
         displayFPS.setEditable(false);
-
+        
         displayGold.setBounds(960, 200, 100, 100);
         displayGold.setFont(fontTarea);
         displayGold.setText("Gold:" + countGold);
@@ -110,6 +119,19 @@ public class SpielPanel extends JPanel implements Runnable {
         displayGold.setBackground(Color.BLACK);
         displayGold.setEditable(false);
 
+        displaySword.setBounds(960, 500, 450, 100);
+        displaySword.setFont(fontTarea); // schrift für die anzeige einfuegen
+        displaySword.setForeground(Color.WHITE); // schriftfarbe weiß
+        displaySword.setBackground(Color.BLACK);
+        displaySword.setEditable(false); // text kann nicht verändert werden
+        
+       
+        displayShield.setBounds(960, 600, 450, 100);
+        displayShield.setFont(fontTarea); // schrift für die anzeige einfuegen
+        displayShield.setForeground(Color.WHITE); // schriftfarbe weiß
+        displayShield.setBackground(Color.BLACK);
+        displayShield.setEditable(false); // text kann nicht verändert werden
+        
         this.setLayout(null);
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.BLACK);
@@ -121,24 +143,28 @@ public class SpielPanel extends JPanel implements Runnable {
         this.add(sideText);
         this.add(displayFPS);
         this.add(displayGold);
+        this.add(displayShield);
+        this.add(displaySword);
         setLanguage(language);
         randomNum();
+        init();
+
        
     }
     
     private SpriteSheet ss;
     private BufferedImage sprite_sheet;
-    /*public void init() {
+    public void init() {
+        // Initialisierung 
         handlerCreature = new HandlerCreature();
-        
-        BufferedImageLoader loader = new BufferedImageLoader();
+
+        loader = new BufferedImageLoader();
         sprite_sheet = loader.loadImage("/mob.png");
         //Sprite Sheet fehlt deswegen nichts hinter /
-        sprite_sheet = loader.loadImage("/");
-        //damit kann man jeden part von dem Spritesheet benutzen kann
         ss = new SpriteSheet(sprite_sheet);
-        // damit kann man jeden part von dem Spritesheet benutzen kann
-    }*/
+        //damit kann man jeden part von dem Spritesheet benutzen kann
+    
+    }
 
     @Override
     public void run() {
@@ -212,17 +238,30 @@ public class SpielPanel extends JPanel implements Runnable {
         }
         if (mouseHandler.leftMousePressed == true) {
 
-            player.CastSwordHit();
+            swordMessage = player.CastSwordHit();
+            displaySword.setText("sword: " + swordMessage);
+            try {
+                Thread.sleep(DELAY); // Füge eine Pause ein
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         if (mouseHandler.rightMousePressed == true) {
-            player.CastShieldBlock();
+
+            shieldMessage = player.CastShieldBlock();
+            displayShield.setText("shield: " + shieldMessage);
+            try {
+                Thread.sleep(DELAY*2); // Füge eine Pause ein
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }
         if (sideText == null) {
             setLanguage(language);
         }
-
+        
     }
 
     @Override
@@ -253,8 +292,6 @@ public class SpielPanel extends JPanel implements Runnable {
                 graphics.drawRect(randomNumberX, randomNumberY, CELL_SIZE, CELL_SIZE);
 
                 graphics.setColor(Color.WHITE);
-                // graphics.setColor(Color.GREEN);
-                // graphics.fillRect(mobX, mobY, CELL_SIZE,CELL_SIZE);
                 graphics.drawImage(mob, mobX, mobY, CELL_SIZE, CELL_SIZE, null);
                 graphics.drawImage(image, playerX, playerY, CELL_SIZE, CELL_SIZE, null); // spieler wird eingefuegt
                 if (playerX > (FIELD_SIZE - 2) * CELL_SIZE) { // wenn der spieler ausßerhalb des spielfelds läuft, wird
@@ -278,7 +315,7 @@ public class SpielPanel extends JPanel implements Runnable {
                 if (countGold >= 5) {
                     nextLvl(graphics);
                 }
-               
+                
                 
                
             }

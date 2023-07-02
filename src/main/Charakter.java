@@ -7,16 +7,20 @@ import java.awt.*;
 public class Charakter extends Entity implements ActionListener {
 
     int health = 3;
+    String swordMessage;
+    String shieldMessage;
 
-    public Charakter(int x, int y, int ID, int health) {
+    public Charakter(int x, int y,ID ID, int health) {
         //Konstruktor für Charakter
-        super(x, y, ID, health);
+        super(x, y, ID);
     }
 
+    @Override
     public void tick() {
         //leer
     }
 
+    @Override
     public void render(Graphics g) {
         //leer
     }
@@ -42,9 +46,9 @@ public class Charakter extends Entity implements ActionListener {
     private int swordAoE_X[] [] = new int[5] [3];
     private int swordAoE_Y[] [] = new int[5] [3];
 
-    private int shieldAoE_X[] [] = new int [3] [3];
+    /*private int shieldAoE_X[] [] = new int [3] [3];
     private int shieldAoE_Y[] [] = new int [3] [3];
-
+    */
         //Überprüfung der Inputs/Events des Kampfes
      public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cooldownTimerSword) {
@@ -58,8 +62,7 @@ public class Charakter extends Entity implements ActionListener {
       
         //Fighting Methoden
         // Sword
-
-    public void CastSwordHit() {
+    public String CastSwordHit() {
 
         /*Hier werden die X und Y Koordinaten der Zellen um den Spieler deklariert. 
         swordAoE_X ist der X Wert der Zelle
@@ -84,6 +87,7 @@ public class Charakter extends Entity implements ActionListener {
         //Abfrage nach laufendem Cooldown
 
             System.out.println("SwordHit");
+            swordMessage = "sword Hit";
             startCooldownSword();
   
             for (int i = 0; i<5; i++) {
@@ -99,53 +103,63 @@ public class Charakter extends Entity implements ActionListener {
 
                             // Hier muss dann der Mob mit den jeweiligen X und Y Koordinaten schaden bekommen
                             System.out.println("does dmg");
+                            swordMessage = "does damage";
                         } else {
                              System.out.println("nothing happens");
+                             swordMessage = "No Sword hit";                              
                         }
                     }
                 }
             }
         } else {
-            System.out.println("No Swordhit");    
+            System.out.println("No Swordhit"); 
+            
+              
         }
+        return swordMessage;
     }
     
         //Unvollständig
-
     private void startCooldownSword() {
 
         //Klasse zum Start des Cooldowns. Dabei wird Cooldown auf true gesetzt und der Timer des Cooldowns gestartet
         CooldownSword = true;
-        cooldownTimerSword.start();
-        System.out.println("Sword: Cooldown gestartet");
         
+        cooldownTimerSword.start();
+        swordMessage = "cooldown active";
+        System.out.println("Sword: Cooldown gestartet");
     }
 
     private void stopCooldownSword() {
 
         //Klasse zum Stoppen des Cooldowns. 
         CooldownSword = false;
+        swordMessage = "cooldown ends";
         cooldownTimerSword.stop();
         System.out.println("Sword: Cooldown beendet");
     }
 
         // Shield
-    public void CastShieldBlock() {
+    public String CastShieldBlock() {
 
            
 
       
         if (!CooldownShield) {
             System.out.println("Shieldblock active");
+            shieldMessage = "shield block active";
             startCooldownShield();
             startActiveTimerShield();
                 //eventuell Abbrechbarkeit durch eine Differenz Rechnung des Cooldowns
             while (CooldownShield == false) {
                 System.out.println("cant take dmg");
+                 swordMessage = "cant take dmg";
             }
         } else {
             System.out.println("No Shieldblock");
+            shieldMessage = "No shildblock";
         }
+        return shieldMessage;
     }
 
 
@@ -153,6 +167,7 @@ public class Charakter extends Entity implements ActionListener {
         CooldownShield = true;
         cooldownTimerShield.start();
         System.out.println("Shield: Cooldown gestartet");
+        shieldMessage = "cooldown active";
     }
 
     private void stopCooldownShield() {
@@ -174,6 +189,7 @@ public class Charakter extends Entity implements ActionListener {
         activeShield = true;
         activeTimerShield.start();
         System.out.println("Shield: Aktiv");
+        shieldMessage = "shield active";
     }
 
     private void stopActiveTimerShield() {

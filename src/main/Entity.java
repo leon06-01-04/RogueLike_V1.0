@@ -5,27 +5,33 @@ import java.awt.*;
 public class Entity {
 
 int y, x;
-int ID;
+ID ID;
 String name;
-int health;
+ int health;
 Rectangle bounds;
+ int velX, velY;
  
-public Entity(int x, int y, int ID, int health) {
+public int getVelX() {
+    return velX;
+}
+
+public int getVelY() {
+    return velY;
+}
+public Entity(int x, int y, ID ID) {
 this.y = y;
 this.x = x;
 this.ID = ID;
 this.health = health;
 }
 
-public Entity(int x2, int y2, int iD2) {
-}
 
 public void tick() {
-
+//leer
 }
 
 public void render(Graphics g) {
-
+//leer
 }
 
 public Rectangle getBounds(){
@@ -40,7 +46,7 @@ public int getX(){
 public int getHealth(){
     return health;
 }
-public int getID(){
+public ID getID(){
     return ID;
 }
 
