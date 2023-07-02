@@ -19,11 +19,11 @@ public class Sound {
     public Sound() {
 
         //Arrays zur verwaltung der jeweilig benötigten Soundeffekte
-        soundURL[0] = getClass().getResource("/ed.mp3");
-        soundURL[1] = getClass().getResource("/clickbutton.mp3"); 
+        soundURL[0] = getClass().getResource("/ed.wav");
+        soundURL[1] = getClass().getResource("/clickbutton.wav"); 
         soundURL[2] = getClass().getResource("/sword.mp3");
         soundURL[3] = getClass().getResource("/coins.mp3");
-        soundURL[4] = getClass().getResource("activebarrier5sek.mp3");
+        soundURL[4] = getClass().getResource("activebarrier5sek.wav");
         soundURL[5] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
         soundURL[6] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
         soundURL[7] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
