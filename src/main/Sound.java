@@ -42,7 +42,7 @@ public class Sound {
     }
 
     //Clip
-        //Clip starten
+    //Clip starten
     public void playSound() {
         clip.start();
     }

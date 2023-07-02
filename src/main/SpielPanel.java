@@ -17,8 +17,14 @@ public class SpielPanel extends JPanel implements Runnable {
     Random random;
     Label label;
     static String language = "Deutsch";
-    Charakter player = new Charakter(10, 10, ID.Charakter, 3);
-   // Mobs mobs = new Mobs(CELL_SIZE, CELL_SIZE, 1);
+  
+    private BufferedImage sprite_sheet;
+    SpriteSheet ss;
+    HandlerCreature handlerCreature;
+    
+     
+    
+  
     SpriteSheet Sprites = new SpriteSheet(null);
     ImageIcon blockImage;
     ImageIcon healthimage;
@@ -40,7 +46,6 @@ public class SpielPanel extends JPanel implements Runnable {
     Graphics hitG;
     BufferedImageLoader loader;
 
-    HandlerCreature handlerCreature;
     KeyHandler keyHandler = new KeyHandler();
     MouseHandler mouseHandler = new MouseHandler();
     Sound sound = new Sound();
@@ -51,7 +56,8 @@ public class SpielPanel extends JPanel implements Runnable {
 
     String swordMessage;
     String shieldMessage;
-
+    
+ 
     
 
     public static final int FIELD_SIZE = 32; // größe des Kompletten Spielfeldes
@@ -67,15 +73,21 @@ public class SpielPanel extends JPanel implements Runnable {
     // position Spieler
     public static int playerX = CELL_SIZE * 2;
     public static int playerY = CELL_SIZE * 2;
+
     // position mobs
     public static int mobX = CELL_SIZE * (FIELD_SIZE-3);
     public static int mobY = CELL_SIZE * (FIELD_SIZE-3);
-
+    
     private int playerSize = CELL_SIZE; // Größe des Spielers
     private int mobSize = CELL_SIZE; // Größe des Spielers
     
+    Charakter player = new Charakter(10, 10, ID.Charakter, 3);
+    //Mobs mobs = new Mobs(mobX,mobY,ID.Mobs,handlerCreature,ss);
+    
     SpielPanel() {
         super();
+        
+        
         fontTarea = new Font("Georgia", Font.ITALIC | Font.BOLD, 20); // schriftart erstellen
         random = new Random();
         sideText = new JTextArea(); // TextAusgabe für einem Text
@@ -83,7 +95,7 @@ public class SpielPanel extends JPanel implements Runnable {
         displayGold = new JTextArea(); // Anzeige wie viel Gold man besitzt
         displayHealth = new JTextArea();
         displaySword = new JTextArea("sword: ");
-        displayShield = new JTextArea("shield ");
+        displayShield = new JTextArea("shield: ");
         
         
 
@@ -148,13 +160,17 @@ public class SpielPanel extends JPanel implements Runnable {
         setLanguage(language);
         randomNum();
         init();
+        //mobs.tick();
 
        
     }
     
-    private SpriteSheet ss;
-    private BufferedImage sprite_sheet;
+    
+    
     public void init() {
+
+        mobX = CELL_SIZE * (FIELD_SIZE-3);
+        mobY = CELL_SIZE * (FIELD_SIZE-3);
         // Initialisierung 
         handlerCreature = new HandlerCreature();
 
@@ -261,6 +277,8 @@ public class SpielPanel extends JPanel implements Runnable {
         if (sideText == null) {
             setLanguage(language);
         }
+        
+        
         
     }
 
@@ -383,7 +401,7 @@ public class SpielPanel extends JPanel implements Runnable {
             System.out.println("Test F");
             sideText.setText("Bienvenue à ...\n Appuyez sur WASD pour vous déplacer");
         } 
-       
+      
         
         
     }
