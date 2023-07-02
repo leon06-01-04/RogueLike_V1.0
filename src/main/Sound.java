@@ -19,7 +19,7 @@ public class Sound {
     public Sound() {
 
         //Arrays zur verwaltung der jeweilig benötigten Soundeffekte
-        soundURL[0] = getClass().getResource("/TanzaufdemVulkan.mp3");
+        soundURL[0] = getClass().getResource("/ed.wav");
         soundURL[1] = getClass().getResource("resources\\TanzaufdemVulkan.wav"); 
         soundURL[2] = getClass().getResource("resources\\TanzaufdemVulkan.wav");
         soundURL[3] = getClass().getResource("/resources\\TanzaufdemVulkan.wav");

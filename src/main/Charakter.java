@@ -83,11 +83,11 @@ public class Charakter extends Entity implements ActionListener {
         //mit der Hilfe von Andrei
 
         if (!CooldownSword && !activeShield) { 
-       
         //Abfrage nach laufendem Cooldown
 
             System.out.println("SwordHit");
             swordMessage = "sword Hit";
+            spielpanel.playMusic(2);
             startCooldownSword();
   
             for (int i = 0; i<5; i++) {
@@ -119,7 +119,6 @@ public class Charakter extends Entity implements ActionListener {
         return swordMessage;
     }
     
-        //Unvollständig
     private void startCooldownSword() {
 
         //Klasse zum Start des Cooldowns. Dabei wird Cooldown auf true gesetzt und der Timer des Cooldowns gestartet
@@ -150,6 +149,8 @@ public class Charakter extends Entity implements ActionListener {
             shieldMessage = "shield block active";
             startCooldownShield();
             startActiveTimerShield();
+            spielpanel.playMusic(4);
+
                 //eventuell Abbrechbarkeit durch eine Differenz Rechnung des Cooldowns
             while (CooldownShield == false) {
                 System.out.println("cant take dmg");
