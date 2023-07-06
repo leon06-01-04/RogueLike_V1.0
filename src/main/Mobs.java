@@ -22,7 +22,6 @@ public  Mobs(int x, int y,  ID ID,HandlerCreature handler, SpriteSheet ss){
     height = SpielPanel.CELL_SIZE;
     width = SpielPanel.CELL_SIZE; 
     this.handler = handler;
-    //fish guckt nach unten
     zombie_image[0]= ss.grabimage(0,0,SpielPanel.CELL_SIZE,SpielPanel.CELL_SIZE);
     bounds = new Rectangle((int)x, (int)y, SpielPanel.CELL_SIZE, SpielPanel.CELL_SIZE);
     // this. ist zum variablen vereinen so das alles in einem gespeichert wird.
